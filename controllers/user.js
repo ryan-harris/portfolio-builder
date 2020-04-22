@@ -10,7 +10,8 @@ function login(req, res) {
 function signup(req, res) {
   db.User.create({
     username: req.body.username,
-    password: req.body.password
+    password: req.body.password,
+    ghUsername: req.body.github
   })
     .then(function() {
       res.redirect(307, "/api/login");

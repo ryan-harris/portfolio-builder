@@ -8,11 +8,27 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       unique: true
     },
-
     password: {
       type: DataTypes.STRING,
       allowNull: false
-    }
+    },
+    theme: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "theme1"
+    },
+    layout: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "layout1"
+    },
+    aboutMe: DataTypes.STRING,
+    ghUsername: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    profileImg: DataTypes.STRING,
+    displayName: DataTypes.STRING
   });
 
   User.prototype.validPassword = function(password) {
@@ -29,12 +45,6 @@ module.exports = function(sequelize, DataTypes) {
 
   User.associate = models => {
     models.User.hasMany(models.Repo, {
-      onDelete: "CASCADE",
-      foreignKey: {
-        allowNull: false
-      }
-    });
-    models.User.hasOne(models.Settings, {
       onDelete: "CASCADE",
       foreignKey: {
         allowNull: false
