@@ -12,5 +12,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "extensions.ignoreRecommendations": false,
-  "files.eol": "\n"
+  "files.eol": "\n",
+  "prettier.arrowParens": "avoid"
 }
