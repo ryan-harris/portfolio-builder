@@ -34,7 +34,7 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       }
     });
-    models.User.hasOne(models.Repo, {
+    models.User.hasOne(models.Settings, {
       onDelete: "CASCADE",
       foreignKey: {
         allowNull: false
