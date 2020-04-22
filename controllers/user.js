@@ -11,9 +11,7 @@ function signup(req, res) {
   db.User.create({
     username: req.body.username,
     password: req.body.password,
-    ghUsername: req.body.github,
-    theme: "theme1",
-    layout: "layout1"
+    ghUsername: req.body.github
   })
     .then(function() {
       res.redirect(307, "/api/login");

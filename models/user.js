@@ -14,11 +14,13 @@ module.exports = function(sequelize, DataTypes) {
     },
     theme: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      defaultValue: "theme1"
     },
     layout: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      defaultValue: "layout1"
     },
     aboutMe: DataTypes.STRING,
     ghUsername: {
