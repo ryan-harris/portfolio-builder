@@ -21,6 +21,7 @@
     <!-- UIkit JS -->
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit-icons.min.js"></script>
+    <script src="/public/js/dashboard.js"></script>
   </head>
   <body>
     <nav class="uk-navbar-container" uk-navbar>
@@ -28,23 +29,24 @@
         <a class="uk-navbar-item uk-logo" href="#">GHPort</a>
       </div>
     </nav>
-
-    <!-- <div class="uk-section"></div> -->
     <div class="uk-container uk-margin">
       <div class="uk-child-width-1-2@s" uk-grid>
         <div>
           <div class="uk-card uk-card-default uk-card-body">
             <ul uk-accordion>
               <li class="uk-open">
-                <a class="uk-accordion-title" href="#"
-                  ><span class="uk-margin-small-right" uk-icon="icon: settings"></span>Profile </a>
+                <a class="uk-accordion-title" href="#">
+                  <span class="uk-margin-small-right" uk-icon="icon: settings"></span>Profile </a>
                 <div class="uk-accordion-content">
                   <form class="uk-grid" uk-grid>
 
                     <!-- Github Username -->
                     <div class="uk-width-1-1">
-                      <p>Github Username: <span>TylorKolbeck</span><span id="editGhUsername" class="uk-margin-small-left" uk-icon="icon: pencil" uk-tooltip="Changing the associated github username will remove all repos associated with the currently set username. "></span></p>
+                      <p id="ghUsername">Github: <span>TylorKolbeck</span><span id="editghUsernameButton" class="uk-margin-small-left" uk-icon="icon: pencil" uk-tooltip="Changing the associated github username will remove all repos associated with the currently set username. "></span></p>
+                      <input id="ghUserNameInput" style="display: none" class="uk-input uk-form-danger uk-form-width-medium" type="text">
+                     
                     </div>
+
 
                     <!-- Set display name -->
                     <div class="uk-width-1-1">
