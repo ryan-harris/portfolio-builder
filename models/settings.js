@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  const Settings = sequelize.define("Settings", {
+  const Settings = sequelize.define("Setting", {
     theme: {
       type: DataTypes.STRING,
       allowNull: false
