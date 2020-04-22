@@ -9,6 +9,6 @@ $(() => {
   function toggleEditingGhUsername() {
     $ghUsername.toggle();
     $ghUsernameContainer.toggle();
-    $ghUsernameInput.val("TylorKolbeck");
+    $ghUsernameInput.val($("#ghUsername #githubUsername").text());
   }
 });
