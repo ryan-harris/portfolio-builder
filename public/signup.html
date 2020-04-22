@@ -21,39 +21,39 @@
       <div>
         <h2>Sign Up</h2>
 
-        <form class="uk-form-stacked">
+        <form class="signup uk-form-stacked">
           <div class="uk-margin-small">
             <label class="uk-form-label">Username</label>
-            <div class="uk-inline">
-              <span class="uk-form-icon" uk-icon="icon: user"></span>
-              <input class="uk-input" type="text" />
+            <div class="">
+              <!-- <span class="uk-form-icon" uk-icon="icon: user"></span> -->
+              <input id="username-input" class="uk-input" type="text" />
             </div>
           </div>
           <div class="uk-margin-small">
             <label class="uk-form-label">Password</label>
-            <div class="uk-inline">
-              <span class="uk-form-icon" uk-icon="icon: lock"></span>
-              <input class="uk-input" type="password" />
+            <div class="">
+              <!-- <span class="uk-form-icon" uk-icon="icon: lock"></span> -->
+              <input id="password-input" class="uk-input" type="password" />
             </div>
           </div>
           <div class="uk-margin-small">
             <label class="uk-form-label">Confirm Password</label>
-            <div class="uk-inline">
-              <span class="uk-form-icon" uk-icon="icon: lock"></span>
-              <input class="uk-input" type="password" />
+            <div class="">
+              <!-- <span class="uk-form-icon" uk-icon="icon: lock"></span> -->
+              <input id="confirm-input" class="uk-input" type="password" />
             </div>
           </div>
           <div class="uk-margin-small">
             <label class="uk-form-label">GitHub Username</label>
-            <div class="uk-inline">
-              <span class="uk-form-icon" uk-icon="icon: github"></span>
-              <input class="uk-input" type="text" />
+            <div class="">
+              <!-- <span class="uk-form-icon" uk-icon="icon: github"></span> -->
+              <input id="github-input" class="uk-input" type="text" />
             </div>
           </div>
           <div
             style="display: none;"
             id="alert"
-            class="alert alert-danger"
+            class="uk-alert uk-alert-danger u-margin-small"
             role="alert"
           >
             <span uk-icon="icon: warning"></span>
@@ -72,6 +72,6 @@
       integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
       crossorigin="anonymous"
     ></script>
-    <!-- <script type="text/javascript" src="js/signup.js"></script> -->
+    <script type="text/javascript" src="/js/signup.js"></script>
   </body>
 </html>
