@@ -13,29 +13,26 @@
     <!-- UIkit JS -->
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit-icons.min.js"></script>
-    <link href="stylesheets/style.css" rel="stylesheet" />
+    <link href="/stylesheets/style.css" rel="stylesheet" />
   </head>
 
   <body>
-    <div class="uk-container uk-position-top-center">
+    <div class="uk-container uk-position-center">
       <div>
         <h2>Login</h2>
 
-        <form>
-          <div class="uk-margin">
+        <form class="uk-form-stacked">
+          <div class="uk-margin-small">
+            <label class="uk-form-label">Username</label>
             <div class="uk-inline">
               <span class="uk-form-icon" uk-icon="icon: user"></span>
-              <label class="uk-form-label">Username:</label>
               <input class="uk-input" type="text" />
             </div>
           </div>
-          <div class="uk-margin">
+          <div class="uk-margin-small">
+            <label class="uk-form-label">Password</label>
             <div class="uk-inline">
-              <span
-                class="uk-form-icon uk-form-icon-flip"
-                uk-icon="icon: lock"
-              ></span>
-              <label class="uk-form-label">Password:</label>
+              <span class="uk-form-icon" uk-icon="icon: lock"></span>
               <input class="uk-input" type="password" />
             </div>
           </div>
@@ -45,10 +42,7 @@
             class="alert alert-danger"
             role="alert"
           >
-            <span
-              class="glyphicon glyphicon-exclamation-sign"
-              aria-hidden="true"
-            ></span>
+            <span uk-icon="icon: warning"></span>
             <span class="sr-only">Error:</span> <span class="msg"></span>
           </div>
           <button class="uk-button uk-button-primary">Submit</button>
@@ -64,6 +58,6 @@
       integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
       crossorigin="anonymous"
     ></script>
-    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="/js/login.js"></script>
   </body>
 </html>
