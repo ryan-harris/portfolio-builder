@@ -11,8 +11,7 @@
       href="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/css/uikit.min.css"
     />
 
-    <link rel="stylesheet"
-    href="css/main.css">
+    <link rel="stylesheet" href="css/main.css" />
 
     <!-- jQuery -->
     <script
@@ -37,30 +36,49 @@
         <div>
           <div class="uk-card uk-card-default uk-card-body">
             <ul uk-accordion>
-              <li >
+              <li>
                 <a class="uk-accordion-title" href="#">
-                  <span class="uk-margin-small-right" uk-icon="icon: settings"></span>Profile </a>
+                  <span
+                    class="uk-margin-small-right"
+                    uk-icon="icon: settings"
+                  ></span
+                  >Profile
+                </a>
                 <div class="uk-accordion-content">
                   <form class="uk-grid" uk-grid>
                     <!-- Github Username -->
                     <!-- <div class="uk-width-1-1"> -->
-                      <p id="ghUsername">
-                        GitHub Username: 
-                        <span id="githubUsername">TylorKolbeck</span>
-                        <span id="editghUsernameButton" class="uk-margin-small-left hover-cursor" uk-icon="icon: pencil" uk-tooltip="Changing the associated github username will remove all repos associated with the currently set username. "></span>
-                      </p>
-                      <div id="ghUserNameEditContainer" style="display: none">
-                        <div class="uk-margin">  
-                          <label class="uk-text-danger"><span uk-icon="icon: warning"></span> This will remove all of your current settings.</label>
-                        </div>
-                        <div>
-                          <input id="ghUsernameInput" class="uk-input uk-form-danger uk-form-width-medium" type="text">
-                          <button class="uk-button uk-button-default"><span uk-icon="icon: trash"></span></button>
-                          <button class="uk-button uk-button-danger">Save</button>
-                        </div>
+                    <p id="ghUsername">
+                      GitHub Username:
+                      <span id="githubUsername">TylorKolbeck</span>
+                      <span
+                        id="editghUsernameButton"
+                        class="uk-margin-small-left hover-cursor"
+                        uk-icon="icon: pencil"
+                        uk-tooltip="Changing the associated github username will remove all repos associated with the currently set username. "
+                      ></span>
+                    </p>
+                    <div id="ghUserNameEditContainer" style="display: none">
+                      <div class="uk-margin">
+                        <label class="uk-text-danger"
+                          ><span uk-icon="icon: warning"></span> This will
+                          remove all of your current settings.</label
+                        >
                       </div>
+                      <div>
+                        <input
+                          id="ghUsernameInput"
+                          class="uk-input uk-form-danger uk-form-width-medium"
+                          type="text"
+                        />
+                        <button class="uk-button uk-button-default">
+                          <span uk-icon="icon: trash"></span>
+                        </button>
+                        <button class="uk-button uk-button-danger">Save</button>
+                      </div>
+                    </div>
                     <!-- </div> -->
- 
+
                     <!-- Set display name -->
                     <div>
                       <div class="uk-inline">
@@ -126,20 +144,62 @@
         </div>
         <div>
           <div class="uk-card uk-card-default uk-card-body">
-            <span class="uk-margin-small-right" uk-icon="icon: settings"></span>Theme And Layout </span>
+            <span class="uk-margin-small-right" uk-icon="icon: settings"></span
+            >Theme And Layout
           </div>
         </div>
       </div>
     </div>
 
     <div class="uk-container">
-      <div>
-        <div class="uk-card uk-card-default uk-card-body">
-          <ul uk-accordion>
-            <li class="uk-open">
-                <a class="uk-accordion-title" href="#"><span class="uk-margin-small-right" uk-icon="icon: settings"></span>Repos</a>
-                <div class="uk-accordion-content">
-                  <table class="uk-table uk-table-divider">
+      <div class="uk-card uk-card-default uk-card-body uk-width-1-1">
+        <ul uk-accordion>
+          <li class="uk-open ">
+            <a class="uk-accordion-title" href="#">
+              <span class="uk-margin-small-right" uk-icon="icon: settings">
+              </span>
+              Repos
+            </a>
+
+            <div class="uk-accordion-content">
+              <div class="uk-grid-small uk-child-width-1-3@s" uk-grid>
+                <div>
+                  <div class="uk-card uk-card-default uk-card-body">
+                    <div class="uk-card-badge uk-label uk-label-success">
+                      Public
+                    </div>
+                    <h3 class="uk-card-title">Title</h3>
+                    <p>
+                      Lorem ipsum color sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua.
+                    </p>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="uk-card uk-card-default uk-card-body">
+                    <div class="uk-card-badge uk-label uk-label-success">
+                      Public
+                    </div>
+                    <h3 class="uk-card-title">Title</h3>
+                    <p>
+                      Lorem ipsum color sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!-- <table class="uk-table uk-table-divider">
                     <thead>
                         <tr>
                             <th class="uk-width-small">Inlcude</th>
@@ -163,18 +223,6 @@
                             <td><form><input class="uk-checkbox" type="checkbox"></form></td>
                             <td>React Chat UI</td>
                             <td><span uk-icon="link"></span> <span uk-icon="pencil"></span></td>
-    
                         </tr>
                     </tbody>
-                </table>
-                </div>
-            </li>
-            <li>
-              
-            </li>
-        </ul>
-        </div>
-      </div>
-    </div>
-  </body>
-</html>
+                </table> -->
