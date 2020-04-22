@@ -1,65 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Passport Authentication</title>
+    <title>GitHub Portfolio Builder</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="css/uikit.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/css/uikit.min.css"
+    />
     <link href="stylesheets/style.css" rel="stylesheet" />
   </head>
 
   <body>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header"></div>
-      </div>
-    </nav>
-    <div class="container">
-      <div class="row">
-        <div>
-          <h2>Sign Up</h2>
+    <div class="uk-container">
+      <div>
+        <h2>Sign Up</h2>
 
-          <form class="signup">
-            <div class="uk-margin">
-              <div class="uk-inline">
-                <span class="uk-form-icon" uk-icon="icon: email"></span>
-                <label class="uk-form-label">Email</label>
-                <input class="uk-input" type="text" />
-              </div>
+        <form>
+          <div class="uk-margin">
+            <div class="uk-inline">
+              <span class="uk-form-icon" uk-icon="icon: user"></span>
+              <label class="uk-form-label">Username:</label>
+              <input class="uk-input" type="text" />
             </div>
-            <div class="uk-margin">
-              <div class="uk-inline">
-                <span
-                  class="uk-form-icon uk-form-icon-flip"
-                  uk-icon="icon: lock"
-                ></span>
-                <label class="uk-form-label">Password</label>
-                <input class="uk-input" type="text" />
-              </div>
-            </div>
-            <div
-              style="display: none;"
-              id="alert"
-              class="alert alert-danger"
-              role="alert"
-            >
+          </div>
+          <div class="uk-margin">
+            <div class="uk-inline">
               <span
-                class="glyphicon glyphicon-exclamation-sign"
-                aria-hidden="true"
+                class="uk-form-icon uk-form-icon-flip"
+                uk-icon="icon: lock"
               ></span>
-              <span class="sr-only">Error:</span> <span class="msg"></span>
+              <label class="uk-form-label">Password:</label>
+              <input class="uk-input" type="password" />
             </div>
-            <button class="uk-button uk-button-primary">Submit</button>
-          </form>
+          </div>
+          <div
+            style="display: none;"
+            id="alert"
+            class="alert alert-danger"
+            role="alert"
+          >
+            <span
+              class="glyphicon glyphicon-exclamation-sign"
+              aria-hidden="true"
+            ></span>
+            <span class="sr-only">Error:</span> <span class="msg"></span>
+          </div>
+          <button class="uk-button uk-button-primary">Submit</button>
+        </form>
 
-          <br />
-          <p>Already have an account? Login <a href="/login">here</a></p>
-        </div>
+        <br />
+        <p>Already have an account? Login <a href="/login">here</a></p>
       </div>
     </div>
 
-    <script src="js/uikit.min.js"></script>
-    <script src="js/uikit-icons.min.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.5.0.min.js"
       integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
