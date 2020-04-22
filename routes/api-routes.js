@@ -9,14 +9,14 @@ module.exports = function(app) {
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
-      email: req.user.email,
+      username: req.user.username,
       id: req.user.id
     });
   });
 
   app.post("/api/signup", function(req, res) {
     db.User.create({
-      userName: req.body.email,
+      username: req.body.username,
       password: req.body.password
     })
       .then(function() {
@@ -42,7 +42,7 @@ module.exports = function(app) {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
-        email: req.user.email,
+        username: req.user.username,
         id: req.user.id
       });
     }
