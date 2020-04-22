@@ -13,5 +13,6 @@
   },
   "extensions.ignoreRecommendations": false,
   "files.eol": "\n",
-  "prettier.arrowParens": "avoid"
+  "prettier.arrowParens": "avoid",
+  "liveServer.settings.port": 5501
 }
