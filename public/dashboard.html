@@ -24,11 +24,23 @@
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit-icons.min.js"></script>
     <script src="/public/js/dashboard.js"></script>
+    <style>
+      .profile-image {
+        background: dodgerblue;
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+      }
+    </style>
   </head>
   <body>
     <nav class="uk-navbar-container" uk-navbar>
       <div class="uk-navbar-left">
         <a class="uk-navbar-item uk-logo" href="#">GHPort</a>
+      </div>
+
+      <div class="uk-navbar-right">
+        <div class="uk-margin-right profile-image"></div>
       </div>
     </nav>
     <div class="uk-container uk-margin">
@@ -47,79 +59,84 @@
                 <div class="uk-accordion-content">
                   <form class="uk-grid" uk-grid>
                     <!-- Github Username -->
-                    <!-- <div class="uk-width-1-1"> -->
-                    <p id="ghUsername">
-                      GitHub Username:
-                      <span id="githubUsername">TylorKolbeck</span>
-                      <span
-                        id="editghUsernameButton"
-                        class="uk-margin-small-left hover-cursor"
-                        uk-icon="icon: pencil"
-                        uk-tooltip="Changing the associated github username will remove all repos associated with the currently set username. "
-                      ></span>
-                    </p>
-                    <div id="ghUserNameEditContainer" style="display: none">
-                      <div class="uk-margin">
-                        <label class="uk-text-danger"
-                          ><span uk-icon="icon: warning"></span> This will
-                          remove all of your current settings.</label
-                        >
-                      </div>
+
+                    <div class="uk-grid" uk-grid>
                       <div>
-                        <input
-                          id="ghUsernameInput"
-                          class="uk-input uk-form-danger uk-form-width-medium"
-                          type="text"
-                        />
-                        <button class="uk-button uk-button-default">
-                          <span uk-icon="icon: trash"></span>
-                        </button>
-                        <button class="uk-button uk-button-danger">Save</button>
-                      </div>
-                    </div>
-                    <!-- </div> -->
-
-                    <!-- Set display name -->
-                    <div>
-                      <div class="uk-inline">
-                        <a
-                          class="uk-form-icon"
-                          href="#"
-                          uk-icon="icon: user"
-                        ></a>
-
-                        <input
-                          class="uk-input"
-                          type="text"
-                          placeholder="Display Name"
-                        />
-                      </div>
-                      <div
-                        class="uk-margin-small-left"
-                        uk-icon="icon: info"
-                        uk-tooltip="If not set, your github username will be used."
-                      ></div>
-                    </div>
-                    <!-- Set profile image -->
-                    <div>
-                      <div class="uk-inline">
-                        <a
-                          class="uk-form-icon"
-                          href="#"
-                          uk-icon="icon: image"
-                        ></a>
-                        <input
-                          class="uk-input"
-                          type="text"
-                          placeholder="Profile Image"
-                        />
+                        <p id="ghUsername">
+                          GitHub Username:
+                          <span id="githubUsername">TylorKolbeck</span>
+                          <span
+                            id="editghUsernameButton"
+                            class="uk-margin-small-left hover-cursor"
+                            uk-icon="icon: pencil"
+                            uk-tooltip="Changing the associated github username will remove all repos associated with the currently set username. "
+                          ></span>
+                        </p>
+                        <div id="ghUserNameEditContainer" style="display: none">
+                          <div class="uk-margin">
+                            <label class="uk-text-danger"
+                              ><span uk-icon="icon: warning"></span> This will
+                              remove all of your current settings.</label
+                            >
+                          </div>
+                          <div>
+                            <input
+                              id="ghUsernameInput"
+                              class="uk-input uk-form-danger uk-form-width-medium"
+                              type="text"
+                            />
+                            <button class="uk-button uk-button-default">
+                              <span uk-icon="icon: trash"></span>
+                            </button>
+                            <button class="uk-button uk-button-danger">
+                              Save
+                            </button>
+                          </div>
+                        </div>
                       </div>
 
-                      <div
-                        class="uk-margin-small-left"
-                        uk-icon="icon: info"
-                        uk-tooltip="If not set, your github profile image will be used."
-                      ></div>
+                      <!-- Set display name -->
+                      <div>
+                        <div class="uk-inline">
+                          <a
+                            class="uk-form-icon"
+                            href="#"
+                            uk-icon="icon: user"
+                          ></a>
+
+                          <input
+                            class="uk-input"
+                            type="text"
+                            placeholder="Display Name"
+                          />
+                        </div>
+                        <div
+                          class="uk-margin-small-left"
+                          uk-icon="icon: info"
+                          uk-tooltip="If not set, your github username will be used."
+                        ></div>
+                      </div>
+                      <!-- Set profile image -->
+                      <div>
+                        <div class="uk-inline">
+                          <a
+                            class="uk-form-icon"
+                            href="#"
+                            uk-icon="icon: image"
+                          ></a>
+                          <input
+                            class="uk-input"
+                            type="text"
+                            placeholder="Profile Image"
+                          />
+                        </div>
+
+                        <div
+                          class="uk-margin-small-left"
+                          uk-icon="icon: info"
+                          uk-tooltip="If not set, your github profile image will be used."
+                        ></div>
+                      </div>
                     </div>
 
                     <!-- Set about me -->
@@ -135,6 +152,9 @@
                     </div>
                     <div>
                       <button class="uk-button uk-button-primary">Save</button>
+                      <button class="uk-button uk-button-default">
+                        Cancel
+                      </button>
                     </div>
                   </form>
                 </div>

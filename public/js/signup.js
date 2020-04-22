@@ -1,42 +1,53 @@
-$(document).ready(function() {
-  // Getting references to our form and input
+$(() => {
   const signUpForm = $("form.signup");
-  const emailInput = $("input#email-input");
+  const usernameInput = $("input#username-input");
   const passwordInput = $("input#password-input");
+  const confirmInput = $("input#confirm-input");
+  const githubInput = $("input#github-input");
 
-  // When the signup button is clicked, we validate the email and password are not blank
   signUpForm.on("submit", function(event) {
     event.preventDefault();
+
     const userData = {
-      email: emailInput.val().trim(),
-      password: passwordInput.val().trim()
+      username: usernameInput.val().trim(),
+      password: passwordInput.val().trim(),
+      github: githubInput.val().trim()
     };
 
-    if (!userData.email || !userData.password) {
+    if (!userData.username || !userData.password || !userData.github) {
       return;
     }
-    // If we have an email and password, run the signUpUser function
-    signUpUser(userData.email, userData.password);
-    emailInput.val("");
+
+    if (userData.password !== confirmInput.val().trim()) {
+      handleLoginErr("Passwords must match");
+      return;
+    }
+
+    signUpUser(userData.username, userData.password, userData.github);
+    usernameInput.val("");
     passwordInput.val("");
+    githubInput.val("");
+    confirmInput.val("");
   });
 
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
-  function signUpUser(email, password) {
+  function signUpUser(username, password, github) {
     $.post("/api/signup", {
-      email: email,
-      password: password
+      username: username,
+      password: password,
+      github: github
     })
       .then(() => {
-        window.location.replace("/members");
-        // If there's an error, handle it by throwing up a bootstrap alert
+        window.location.replace("/dashboard");
       })
-      .catch(handleLoginErr);
+      .catch(err => {
+        handleLoginErr(err.responseJSON);
+      });
   }
 
-  function handleLoginErr(err) {
-    $("#alert .msg").text(err.responseJSON);
+  function handleLoginErr(message) {
+    $("#alert .msg").text(message);
     $("#alert").fadeIn(500);
   }
 });
