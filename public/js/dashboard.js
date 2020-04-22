@@ -1,12 +1,14 @@
 $(() => {
   const $ghUsername = $("#ghUsername");
   const $editUserNameButton = $("#editghUsernameButton");
-  const $ghUsernameInput = $("#ghUserNameInput");
+  const $ghUsernameContainer = $("#ghUserNameEditContainer");
+  const $ghUsernameInput = $("#ghUsernameInput");
 
   $editUserNameButton.on("click", toggleEditingGhUsername);
 
   function toggleEditingGhUsername() {
     $ghUsername.toggle();
-    $ghUsernameInput.toggle();
+    $ghUsernameContainer.toggle();
+    $ghUsernameInput.val("TylorKolbeck");
   }
 });
