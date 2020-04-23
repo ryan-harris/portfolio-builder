@@ -1,21 +1,18 @@
 const axios = require("axios");
-// const userData = { repoList: [] };
-
-// TODO: issue #47 get user info from database
-// will need join between repos and user information
-
-// TODO: issue #46 get user repos from github
-//req.user.ghUsername
+const db = require("../models");
+const repoController = require("../controllers/repo");
 
 async function buildUserInfo(req, res, next) {
-  req.user = {};
-  req.user.ghUsername = "tylorkolbeck";
   const githubUserInfo = await getUserInfo(req.user.ghUsername); //object
   const githubUserRepos = await getUserRepos(req.user.ghUsername); //array
+  const databaseData = await getDatabaseData(req.user.username);
 
-  interpolateDataHere();
+  githubUserRepos.forEach(repo => {
+    // not updating anything in our database with new info for an existing repo
+    repoController.findOrCreate(repo, databaseData.id);
+  });
+  interpolateData(githubUserInfo, githubUserRepos, databaseData);
 
-  console.log(githubUserInfo, githubUserRepos);
   next();
 }
 
@@ -46,7 +43,16 @@ function getUserRepos(userName) {
     });
 }
 
-function interpolateDataHere() {
+function getDatabaseData(username) {
+  return db.User.findOne({
+    include: db.Repo,
+    where: {
+      username: username
+    }
+  });
+}
+
+function interpolateData() {
   return null;
 }
 
