@@ -1,6 +1,5 @@
 const axios = require("axios");
-const userData = {};
-const repoList = [];
+const userData = { repoList: [] };
 
 function getUserInfo(req, res, next) {
   // TODO: issue #47 get user info from database
@@ -17,10 +16,8 @@ function getUserInfo(req, res, next) {
 
     getUserRepos(userName, () => {
       req.userData = userData;
-      next();
+      return next();
     });
-
-    // assign the data here to pass along to next function
   });
 }
 
@@ -34,9 +31,8 @@ function getUserRepos(userName, callback) {
           description: repo.description,
           repoUrl: repo.html_url
         };
-        repoList.push(repoData);
+        userData.repoList.push(repoData);
       });
-      userData.repos = repoList;
       callback();
     });
 }
