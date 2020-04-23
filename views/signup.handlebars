@@ -1,27 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>GitHub Portfolio Builder</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- UIkit CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/css/uikit.min.css"
-    />
 
-    <!-- UIkit JS -->
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit-icons.min.js"></script>
-    <link href="/stylesheets/style.css" rel="stylesheet" />
-  </head>
+        {{> navbar}}
 
-  <body>
     <div class="uk-container uk-position-center">
       <div>
-        <h2>Login</h2>
+        <h2>Sign Up</h2>
 
-        <form class="login uk-form-stacked">
+        <form class="signup uk-form-stacked">
           <div class="uk-margin-small">
             <label class="uk-form-label">Username</label>
             <div class="">
@@ -36,10 +20,24 @@
               <input id="password-input" class="uk-input" type="password" />
             </div>
           </div>
+          <div class="uk-margin-small">
+            <label class="uk-form-label">Confirm Password</label>
+            <div class="">
+              <!-- <span class="uk-form-icon" uk-icon="icon: lock"></span> -->
+              <input id="confirm-input" class="uk-input" type="password" />
+            </div>
+          </div>
+          <div class="uk-margin-small">
+            <label class="uk-form-label">GitHub Username</label>
+            <div class="">
+              <!-- <span class="uk-form-icon" uk-icon="icon: github"></span> -->
+              <input id="github-input" class="uk-input" type="text" />
+            </div>
+          </div>
           <div
             style="display: none;"
             id="alert"
-            class="alert alert-danger"
+            class="uk-alert uk-alert-danger u-margin-small"
             role="alert"
           >
             <span uk-icon="icon: warning"></span>
@@ -49,7 +47,7 @@
         </form>
 
         <br />
-        <p>Don't have an account? Sign up <a href="/signup">here</a></p>
+        <p>Already have an account? Login <a href="/login">here</a></p>
       </div>
     </div>
 
@@ -58,6 +56,6 @@
       integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
       crossorigin="anonymous"
     ></script>
-    <script type="text/javascript" src="/js/login.js"></script>
-  </body>
-</html>
+    <script type="text/javascript" src="/js/signup.js"></script>
+
+
