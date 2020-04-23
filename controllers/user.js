@@ -26,8 +26,38 @@ function logout(req, res) {
   res.redirect("/");
 }
 
+function updateWhereNull(updateData, currentData) {
+  fields = [];
+  if (!currentData.aboutMe) {
+    fields.push("aboutMe");
+  }
+  if (!currentData.profileImg) {
+    fields.push("profileImg");
+  }
+  if (!currentData.displayName) {
+    fields.push("displayName");
+  }
+  db.User.update(updateData, {
+    where: {
+      username: currentData.username
+    },
+    fields: fields
+  });
+}
+
+function getUser(username) {
+  return db.User.findOne({
+    include: db.Repo,
+    where: {
+      username: username
+    }
+  });
+}
+
 module.exports = {
   login,
   signup,
-  logout
+  logout,
+  updateWhereNull,
+  getUser
 };
