@@ -4,7 +4,7 @@
     href="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/css/uikit.min.css"
   />
   <link rel="stylesheet" href="{{userData.theme}}.css">
-  <title> "{{userData.username}}" </title>
+  <title> {{userData.username}} </title>
   <style>
     
     body {
@@ -70,7 +70,7 @@
         src="https://via.placeholder.com/200"
         alt="User Image"
       />
-      <h1>Hi Im {{ User }}</h1>
+      <h1>Hi Im {{ userData.username }}</h1>
     </div>
   </div>
 
@@ -87,30 +87,19 @@
       <hr>
       <h2>Projects</h2>
       <ul uk-accordion>
-        <li>
-            <a class="uk-accordion-title" href="#">Cool Project</a>
-            <div class="uk-accordion-content">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat nihil cumque facere consectetur dolorum quaerat error eum, animi nulla deleniti cum aliquid eius dolores adipisci fuga, a ipsum! Iusto sit delectus rerum repellendus voluptatibus nihil, nulla, tempora ipsum itaque veritatis eaque, quibusdam eveniet saepe ut cumque? Et, quam. Fuga, accusantium?</p>
-              <a class="uk-button uk-button-default" href="">Github Repo</a>
-              <a class="uk-button uk-button-default" href="">Demo</a>
-            </div>
 
-        </li>
-        <li >
-            <a class="uk-accordion-title" href="#">Project Cool</a>
+        {{#each Repos}}
+          <li>
+            <a class="uk-accordion-title" href="#">{{name}}</a>
             <div class="uk-accordion-content">
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio dolore delectus id rem dolor expedita laboriosam omnis! Eos, obcaecati. Dignissimos corrupti laborum facilis deleniti, numquam necessitatibus voluptatibus pariatur. Fuga, officiis repudiandae laborum a veniam obcaecati ipsa, inventore, vel eaque illo cumque sunt maxime! Placeat impedit, blanditiis quam odio ea hic.</p>
-              <a class="uk-button uk-button-default" href="">Github Repo</a>
+              {{#if description}}
+                <p>{{description}}</p>
+              {{/if}}
+              <a class="uk-button uk-button-default" href=" {{ repoUrl }} ">Github Repo</a>
             </div>
-        </li>
-        <li>
-            <a class="uk-accordion-title" href="#">Cool Cool Project</a>
-            <div class="uk-accordion-content">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid ab quae aliquam molestiae officia natus dicta error? Consequatur at tempore voluptate atque, repellendus esse explicabo dolore harum omnis doloribus magni corrupti adipisci rem sit odio a! Assumenda dolor suscipit itaque veniam reiciendis sequi autem, ipsum, officia aspernatur consectetur tempora sed!</p>
-                <a class="uk-button uk-button-default" href="">Github</a>
-                <a class="uk-button uk-button-default" href="">Demo</a>
-            </div>
-        </li>
+          </li>
+        {{/each}}
+      
       </ul>
     <div>
   </div>
@@ -119,4 +108,3 @@
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit-icons.min.js"></script>
 </body>
-
