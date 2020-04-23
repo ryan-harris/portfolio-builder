@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     included: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false
+      defaultValue: true
     },
     repoId: DataTypes.INTEGER,
     description: DataTypes.STRING,
