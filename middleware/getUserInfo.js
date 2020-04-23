@@ -28,7 +28,6 @@ function getUserInfo(req, res, next) {
         repoList.push(repoData);
       });
       userData.repos = repoList;
-      console.log(userData);
     });
 
   // assign the data here to pass along to next function
