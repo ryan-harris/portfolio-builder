@@ -29,8 +29,7 @@ router.get("/signup", function(req, res) {
   res.sendFile(path.join(__dirname, "../public/signup.html"));
 });
 
-// router.get("/dashboard", isAuthenticated, getUserInfo, function(req, res) {
-router.get("/dashboard", function(req, res) {
+router.get("/dashboard", isAuthenticated, getUserInfo, function(req, res) {
   // res.render("dashboard", req.userData);
   // console.log(req.userData);
   // res.sendStatus(200);
