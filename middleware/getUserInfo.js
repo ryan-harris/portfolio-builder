@@ -13,7 +13,7 @@ async function buildUserInfo(req, res, next) {
     repoController.findOrCreate(repo, databaseData.id);
     repoController.update(repo);
   });
-  req.userData = constructData(req.user.username);
+  req.userData = await constructData(req.user.username);
 
   next();
 }
@@ -45,10 +45,13 @@ function getUserRepos(userName) {
     });
 }
 
-function constructData(username) {
-  const userData = userController.getUser(username);
+async function constructData(username) {
+  const userData = await userController.getUser(username).then(data => {
+    return data.toJSON();
+  });
+
   const returnData = {
-    repos: userData.repos,
+    repos: userData.Repos,
     displayName: userData.displayName,
     aboutMe: userData.aboutMe,
     profileImage: userData.profileImg,
