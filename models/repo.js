@@ -4,6 +4,11 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
+    included: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
+    repoId: DataTypes.INTEGER,
     description: DataTypes.STRING,
     repoUrl: DataTypes.STRING,
     demoUrl: DataTypes.STRING
