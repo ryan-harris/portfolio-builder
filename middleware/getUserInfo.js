@@ -1,15 +1,17 @@
 const axios = require("axios");
-const db = require("../models");
 const repoController = require("../controllers/repo");
+const userController = require("../controllers/user");
 
 async function buildUserInfo(req, res, next) {
   const githubUserInfo = await getUserInfo(req.user.ghUsername); //object
   const githubUserRepos = await getUserRepos(req.user.ghUsername); //array
-  const databaseData = await getDatabaseData(req.user.username);
+  const databaseData = await userController.getUser(req.user.username);
 
+  //update user info where columns null
+  userController.updateWhereNull(githubUserInfo, databaseData);
   githubUserRepos.forEach(repo => {
-    // not updating anything in our database with new info for an existing repo
     repoController.findOrCreate(repo, databaseData.id);
+    repoController.update(repo);
   });
   interpolateData(githubUserInfo, githubUserRepos, databaseData);
 
@@ -22,8 +24,8 @@ function getUserInfo(userName) {
     .then(response => {
       return {
         profileImg: response.data.avatar_url,
-        about: response.data.bio,
-        name: response.data.name
+        aboutMe: response.data.bio,
+        displayName: response.data.name
       };
     });
 }
@@ -41,15 +43,6 @@ function getUserRepos(userName) {
         };
       });
     });
-}
-
-function getDatabaseData(username) {
-  return db.User.findOne({
-    include: db.Repo,
-    where: {
-      username: username
-    }
-  });
 }
 
 function interpolateData() {

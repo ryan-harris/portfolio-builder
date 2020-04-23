@@ -15,6 +15,15 @@ function findOrCreate(repo, userId) {
   }).then();
 }
 
+function update(repo) {
+  db.Repo.update(repo, {
+    where: {
+      repoId: repo.id
+    }
+  });
+}
+
 module.exports = {
-  findOrCreate
+  findOrCreate,
+  update
 };

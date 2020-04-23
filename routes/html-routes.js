@@ -3,7 +3,7 @@ const express = require("express");
 const getUserInfo = require("../middleware/getUserInfo");
 
 // Requiring our custom middleware for checking if a user is logged in
-// const isAuthenticated = require("../config/middleware/isAuthenticated");
+const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 const router = express.Router();
 
