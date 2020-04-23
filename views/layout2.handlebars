@@ -4,7 +4,7 @@
     href="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/css/uikit.min.css"
   />
   <link rel="stylesheet" href="{{userData.theme}}.css">
-  <title> "{{userData.username}}" </title>
+  <title> {{userData.username}} </title>
   <style>
     
     body {
@@ -70,7 +70,7 @@
         src="https://via.placeholder.com/200"
         alt="User Image"
       />
-      <h1>Hi Im {{ User }}</h1>
+      <h1>Hi Im {{ userData.username }}</h1>
     </div>
   </div>
 
@@ -78,39 +78,28 @@
     <div class="aboutme">
       <hr>
       <h2>About Me</h2>
-      <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum quasi eveniet non nulla fugit. Unde, quaerat! Molestias ea vitae quos repellendus a maxime vero, commodi unde placeat tempora incidunt amet. Unde dicta ipsum aliquid quis laboriosam nemo alias accusamus cumque, consectetur velit mollitia et hic quas modi a fugit, sunt cum qui praesentium autem consequuntur facere. Natus blanditiis non doloremque omnis nostrum quos saepe, cumque placeat tempora laudantium eum provident temporibus adipisci! Optio, vel, consequuntur est porro excepturi deleniti eius ipsum beatae repellat magni quidem velit fuga doloribus nihil minus laboriosam consequatur? Voluptatibus, labore, soluta fugiat, mollitia aliquid quam enim alias velit temporibus facere porro! Neque accusamus totam consequuntur non quo consequatur minima impedit deserunt error, nam fuga vero repellendus eos magnam iste dolores atque! Voluptate id pariatur et dolores reprehenderit, beatae eos odit ab aut veniam inventore rem quia incidunt dicta impedit expedita earum eaque. Pariatur eaque laboriosam aperiam?
-      </p>
+      {{#if aboutMe}}
+        <p>{{aboutMe}}</p>
+      {{/if}}
     </div>
 
     <div  class="projects">
       <hr>
       <h2>Projects</h2>
       <ul uk-accordion>
-        <li>
-            <a class="uk-accordion-title" href="#">Cool Project</a>
-            <div class="uk-accordion-content">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat nihil cumque facere consectetur dolorum quaerat error eum, animi nulla deleniti cum aliquid eius dolores adipisci fuga, a ipsum! Iusto sit delectus rerum repellendus voluptatibus nihil, nulla, tempora ipsum itaque veritatis eaque, quibusdam eveniet saepe ut cumque? Et, quam. Fuga, accusantium?</p>
-              <a class="uk-button uk-button-default" href="">Github Repo</a>
-              <a class="uk-button uk-button-default" href="">Demo</a>
-            </div>
 
-        </li>
-        <li >
-            <a class="uk-accordion-title" href="#">Project Cool</a>
+        {{#each Repos}}
+          <li>
+            <a class="uk-accordion-title" href="#">{{name}}</a>
             <div class="uk-accordion-content">
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio dolore delectus id rem dolor expedita laboriosam omnis! Eos, obcaecati. Dignissimos corrupti laborum facilis deleniti, numquam necessitatibus voluptatibus pariatur. Fuga, officiis repudiandae laborum a veniam obcaecati ipsa, inventore, vel eaque illo cumque sunt maxime! Placeat impedit, blanditiis quam odio ea hic.</p>
-              <a class="uk-button uk-button-default" href="">Github Repo</a>
+              {{#if description}}
+                <p>{{description}}</p>
+              {{/if}}
+              <a class="uk-button uk-button-default" href=" {{ repoUrl }} ">Github Repo</a>
             </div>
-        </li>
-        <li>
-            <a class="uk-accordion-title" href="#">Cool Cool Project</a>
-            <div class="uk-accordion-content">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid ab quae aliquam molestiae officia natus dicta error? Consequatur at tempore voluptate atque, repellendus esse explicabo dolore harum omnis doloribus magni corrupti adipisci rem sit odio a! Assumenda dolor suscipit itaque veniam reiciendis sequi autem, ipsum, officia aspernatur consectetur tempora sed!</p>
-                <a class="uk-button uk-button-default" href="">Github</a>
-                <a class="uk-button uk-button-default" href="">Demo</a>
-            </div>
-        </li>
+          </li>
+        {{/each}}
+      
       </ul>
     <div>
   </div>
@@ -119,4 +108,3 @@
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit-icons.min.js"></script>
 </body>
-
