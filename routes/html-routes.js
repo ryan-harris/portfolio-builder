@@ -30,7 +30,7 @@ router.get("/signup", function(req, res) {
 });
 
 // router.get("/dashboard", isAuthenticated, getUserInfo, function(req, res) {
-router.get("/dashboard", getUserInfo, function(req, res) {
+router.get("/dashboard", function(req, res) {
   // res.render("dashboard", req.userData);
   // console.log(req.userData);
   // res.sendStatus(200);

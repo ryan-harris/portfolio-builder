@@ -162,12 +162,38 @@
             </ul>
           </div>
         </div>
+
         <div>
           <div class="uk-card uk-card-default uk-card-body">
-            <span class="uk-margin-small-right" uk-icon="icon: settings"></span
-            >Theme And Layout
+            <ul uk-accordion>
+              <li>
+                <a class="uk-accordion-title" href="#">
+                  <span
+                    class="uk-margin-small-right"
+                    uk-icon="icon: settings"
+                  ></span>Theme And Layout
+                </a>
+               
+                  <div class="uk-accordion-content">
+                    <p>Theme</p>
+                    <div class="uk-flex uk-flex-middle">
+                      <span class="uk-margin-small-right">Light</span>
+                      <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                      </label>
+                      <span class="uk-margin-small-left">Dark</span>
+                    </div>
+                    
+                </div>
+
+                </li>
+            </ul>
+            {{!-- <span class="uk-margin-small-right" uk-icon="icon: settings"></span> --}}
+            {{!-- Theme And Layout --}}
           </div>
         </div>
+
       </div>
     </div>
 
