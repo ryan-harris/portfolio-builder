@@ -12,7 +12,7 @@
         uk-img
       />
       <div class="uk-section uk-section-muted uk-width-3">
-        <div class="uk-container">
+        <div class="uk-container" style="padding-left: 1em;">
           <h3>Hi! I'm {{displayName}}</h3>
           <br>
           <h3>About Me</h3>
@@ -26,18 +26,23 @@
     </div>
 
     <div class="uk-container">
+      <br>
       <h3>My work</h3>
       <div class="uk-grid-match uk-child-width-1-3@s " uk-grid>
         {{#each Repos}}
         <div class="uk-grid-item-match">
-          <div class="uk-card uk-card-default uk-card-body">
+          <div class="uk-card uk-card-default uk-card-body uk-inline">
             <h3>{{name}}</h3>
             <p>{{description}}</p>
-            <a href="#">Link</a>
-            <a href="{{demoUrl}}" class="uk-align-right">Demo Url</a>
-            <a href="{{repoUrl}}" class="uk-align-bottom">View More</a>
+            <br>
+            <div class="uk-position-bottom uk-container" style="padding-bottom: 1em;">
+              <a href="{{repoUrl}}" class="uk-align-center uk-button uk-button-primary" style="width: 12em;">Repository ></a>
+              <!-- <a href="{{repoUrl}}" style="padding-left: 1em;">Repository ></a>
+              <a href="{{demoUrl}}" class="uk-align-right" style="padding-right: 1em;">Deployed Version ></a> -->
+            </div>
           </div>
         </div>
         {{/each}}
       </div>
     </div>
+    <br>
