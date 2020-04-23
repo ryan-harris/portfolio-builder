@@ -1,8 +1,4 @@
-    <nav class="uk-navbar-container uk-margin" uk-navbar>
-      <div class="uk-navbar-left">
-        <a class="uk-navbar-item uk-logo" href="#">Hi! I'm {{displayName}}</a>
-      </div>
-    </nav>
+    {{navbar}}
     <div
       class="uk-child-width-expand uk-container"
       data-uk-grid-margin
@@ -17,6 +13,8 @@
       />
       <div class="uk-section uk-section-muted uk-width-3">
         <div class="uk-container">
+          <h3>Hi! I'm {{displayName}}</h3>
+          <br>
           <h3>About Me</h3>
           <p>
             {{#if user}}
