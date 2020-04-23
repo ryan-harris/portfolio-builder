@@ -1,40 +1,53 @@
 const axios = require("axios");
-const userData = { repoList: [] };
+// const userData = { repoList: [] };
 
-function getUserInfo(req, res, next) {
-  // TODO: issue #47 get user info from database
-  // will need join between repos and user information
+// TODO: issue #47 get user info from database
+// will need join between repos and user information
 
-  // TODO: issue #46 get user repos from github
-  //req.user.ghUsername
-  const userName = req.user.ghUsername;
+// TODO: issue #46 get user repos from github
+//req.user.ghUsername
 
-  axios.get("https://api.github.com/users/" + userName).then(response => {
-    userData.name = response.data.name;
-    userData.profileImg = response.data.avatar_url;
-    userData.about = response.data.bio;
+async function buildUserInfo(req, res, next) {
+  req.user = {};
+  req.user.ghUsername = "tylorkolbeck";
+  const githubUserInfo = await getUserInfo(req.user.ghUsername); //object
+  const githubUserRepos = await getUserRepos(req.user.ghUsername); //array
 
-    getUserRepos(userName, () => {
-      req.userData = userData;
-      return next();
-    });
-  });
+  interpolateDataHere();
+
+  console.log(githubUserInfo, githubUserRepos);
+  next();
 }
 
-function getUserRepos(userName, callback) {
-  axios
+function getUserInfo(userName) {
+  return axios
+    .get("https://api.github.com/users/" + userName)
+    .then(response => {
+      return {
+        profileImg: response.data.avatar_url,
+        about: response.data.bio,
+        name: response.data.name
+      };
+    });
+}
+
+function getUserRepos(userName) {
+  return axios
     .get("https://api.github.com/users/" + userName + "/repos")
     .then(response => {
-      response.data.forEach(repo => {
-        const repoData = {
+      return response.data.map(repo => {
+        return {
+          id: repo.id,
           name: repo.name,
           description: repo.description,
           repoUrl: repo.html_url
         };
-        userData.repoList.push(repoData);
       });
-      callback();
     });
 }
 
-module.exports = getUserInfo;
+function interpolateDataHere() {
+  return null;
+}
+
+module.exports = buildUserInfo;
