@@ -19,7 +19,7 @@ router.get("/login", function(req, res) {
   if (req.user) {
     res.redirect("/dashboard");
   }
-  res.sendFile(path.join(__dirname, "../public/login.html"));
+  res.render("login");
 });
 
 router.get("/signup", function(req, res) {
