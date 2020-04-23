@@ -33,7 +33,8 @@ router.get("/signup", function(req, res) {
 router.get("/dashboard", getUserInfo, function(req, res) {
   // res.render("dashboard", req.userData);
   // console.log(req.userData);
-  res.sendStatus(200);
+  // res.sendStatus(200);
+  res.render("dashboard");
 });
 
 module.exports = router;
