@@ -13,7 +13,7 @@ async function buildUserInfo(req, res, next) {
     repoController.findOrCreate(repo, databaseData.id);
     repoController.update(repo);
   });
-  interpolateData(githubUserInfo, githubUserRepos, databaseData);
+  req.userData = constructData(req.user.username);
 
   next();
 }
@@ -45,8 +45,19 @@ function getUserRepos(userName) {
     });
 }
 
-function interpolateData() {
-  return null;
+function constructData(username) {
+  const userData = userController.getUser(username);
+  const returnData = {
+    repos: userData.repos,
+    displayName: userData.displayName,
+    aboutMe: userData.aboutMe,
+    profileImage: userData.profileImg,
+    theme: userData.theme,
+    layout: userData.layout,
+    ghUsername: userData.ghUsername,
+    username: userData.username
+  };
+  return returnData;
 }
 
 module.exports = buildUserInfo;

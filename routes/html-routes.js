@@ -1,6 +1,7 @@
 // Requiring path to so we can use relative routes to our HTML files
 const express = require("express");
-const getUserInfo = require("../middleware/getUserInfo");
+const buildUserInfo = require("../middleware/getUserInfo");
+const userController = require("../controllers/user");
 
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
@@ -28,11 +29,24 @@ router.get("/signup", function(req, res) {
   res.render("signup");
 });
 
-router.get("/dashboard", isAuthenticated, getUserInfo, function(req, res) {
+router.get("/dashboard", isAuthenticated, buildUserInfo, function(req, res) {
   // res.render("dashboard", req.userData);
   // console.log(req.userData);
   // res.sendStatus(200);
-  res.render("dashboard");
+  res.render("dashboard", req.userData);
+});
+
+router.get("/:username", function(req, res) {
+  // determine layout and render layout with req.userData
+  userController.getUser(req.params.username).then(userData => {
+    if (!userData) {
+      return res.sendStatus(404);
+    }
+    res.render(userData.layout, {
+      ...userData.toJSON(),
+      layout: "public"
+    });
+  });
 });
 
 module.exports = router;
