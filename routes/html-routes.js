@@ -1,5 +1,4 @@
 // Requiring path to so we can use relative routes to our HTML files
-const path = require("path");
 const express = require("express");
 const getUserInfo = require("../middleware/getUserInfo");
 
@@ -26,7 +25,7 @@ router.get("/signup", function(req, res) {
   if (req.user) {
     res.redirect("/dashboard");
   }
-  res.sendFile(path.join(__dirname, "../public/signup.html"));
+  res.render("signup");
 });
 
 // router.get("/dashboard", isAuthenticated, getUserInfo, function(req, res) {
