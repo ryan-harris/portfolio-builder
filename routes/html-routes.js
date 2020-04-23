@@ -29,7 +29,10 @@ router.get("/signup", function(req, res) {
 });
 
 router.get("/dashboard", isAuthenticated, function(req, res) {
-  res.sendFile(path.join(__dirname, "../public/dashboard.html"));
+  // LOGIC
+  res.render("dashboard", data);
+
+  // res.sendFile(path.join(__dirname, "../public/dashboard.html"));
 });
 
 module.exports = router;
