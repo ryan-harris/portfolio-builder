@@ -23,6 +23,8 @@ $(() => {
       return;
     }
 
+    addSpinner();
+
     signUpUser(userData.username, userData.password, userData.github);
     usernameInput.val("");
     passwordInput.val("");
@@ -42,12 +44,29 @@ $(() => {
         window.location.replace("/dashboard");
       })
       .catch(err => {
-        handleLoginErr(err.responseJSON);
+        removeSpinner();
+        if (err.status === 401) {
+          handleLoginErr("A user with that username has already been created");
+        } else {
+          handleLoginErr(err.response);
+        }
       });
   }
 
   function handleLoginErr(message) {
     $("#alert .msg").text(message);
     $("#alert").fadeIn(500);
+  }
+
+  function addSpinner() {
+    $(".uk-container").append(
+      "<div id ='spinner'><span class = 'uk-position-center' uk-spinner='ratio: 4.5'></span></div>"
+    );
+    signUpForm.css("opacity", "0");
+  }
+
+  function removeSpinner() {
+    $("#spinner").remove();
+    signUpForm.css("opacity", "100");
   }
 });
