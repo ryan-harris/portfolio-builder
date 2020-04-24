@@ -2,6 +2,7 @@
 const express = require("express");
 const buildUserInfo = require("../middleware/getUserInfo");
 const userController = require("../controllers/user");
+const formatRepoNames = require("../middleware/formatRepoNames");
 
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
@@ -30,6 +31,7 @@ router.get("/dashboard", isAuthenticated, buildUserInfo, function(req, res) {
   // res.render("dashboard", req.userData);
   // console.log(req.userData);
   // res.sendStatus(200);
+  req.userData.repos = formatRepoNames(req.userData.repos);
   return res.render("dashboard", { ...req.userData, layout: "main" });
 });
 
@@ -39,8 +41,12 @@ router.get("/:username", function(req, res) {
     if (!userData) {
       return res.sendStatus(404);
     }
+    userData = userData.toJSON();
+    // formatRepoNames(req);
+    userData.Repos = formatRepoNames(userData.Repos);
+
     res.render(userData.layout, {
-      ...userData.toJSON(),
+      ...userData,
       layout: "public"
     });
   });
