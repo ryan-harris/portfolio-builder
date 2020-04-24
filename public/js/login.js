@@ -16,6 +16,8 @@ $(() => {
       return;
     }
 
+    addSpinner();
+
     // If we have an email and password we run the loginUser function and clear the form
     loginUser(userData.username, userData.password);
     usernameInput.val("");
@@ -33,7 +35,29 @@ $(() => {
         // If there's an error, log the error
       })
       .catch(function(err) {
-        console.log(err);
+        removeSpinner();
+        if (err.status === 401) {
+          handleLoginErr("Incorrect username or password");
+        } else {
+          handleLoginErr(err.response);
+        }
       });
+  }
+
+  function addSpinner() {
+    $(".uk-container").append(
+      "<div id ='spinner'><span class = 'uk-position-center' uk-spinner='ratio: 4.5'></span></div>"
+    );
+    loginForm.css("opacity", "0");
+  }
+
+  function removeSpinner() {
+    $("#spinner").remove();
+    loginForm.css("opacity", "100");
+  }
+
+  function handleLoginErr(message) {
+    $("#alert .msg").text(message);
+    $("#alert").fadeIn(500);
   }
 });
