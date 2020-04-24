@@ -9,22 +9,19 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 const router = express.Router();
 
 router.get("/", function(req, res) {
-  if (req.user) {
-    return res.redirect("/dashboard");
-  }
-  res.render("index");
+  res.render("index", { user: req.user });
 });
 
 router.get("/login", function(req, res) {
   if (req.user) {
-    return res.redirect("/dashboard");
+    res.redirect("/dashboard");
   }
   res.render("login");
 });
 
 router.get("/signup", function(req, res) {
   if (req.user) {
-    return res.redirect("/dashboard");
+    res.redirect("/dashboard");
   }
   res.render("signup");
 });
