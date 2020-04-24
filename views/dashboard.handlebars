@@ -201,6 +201,14 @@
         </a>
 
         <div class="uk-accordion-content">
+            {{#unless repos}}
+              <div class="uk-margin-small uk-flex uk-flex-middle">
+                <span uk-icon="icon: warning" class="uk-text-danger uk-margin-small-right" ></span>
+                <label class="uk-text-danger"> There were no repos found for this user</label>
+              </div>
+
+
+            {{/unless}}
           <div class="uk-grid-small uk-grid-match uk-child-width-1-2@s uk-child-width-1-3@m" uk-grid>
             {{#each repos}}
               <div id="repoCard" class="{{#unless this.included}}opac-50{{/unless}}">
