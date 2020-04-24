@@ -63,7 +63,7 @@ To-do list:
 
 Project is: _in progress_
 
-- Make sure to check the application [here](#).
+- Make sure to check the application [here](https://github-portfolio-builder.herokuapp.com/).
 
 ## Inspiration
 
