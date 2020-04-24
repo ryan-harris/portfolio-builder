@@ -58,6 +58,7 @@ function getIncludedRepos(username) {
   return db.User.findOne({
     include: {
       model: db.Repo,
+      required: false,
       where: {
         included: true
       }
