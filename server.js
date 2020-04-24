@@ -17,7 +17,18 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
-app.engine("handlebars", exphbs());
+
+const hbs = exphbs.create({
+  helpers: {
+    ifEq: function(a, b, options) {
+      if (a === b) {
+        return options.fn(this);
+      }
+      return options.inverse(this);
+    }
+  }
+});
+app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 // We need to use sessions to keep track of our user's login status
 app.use(

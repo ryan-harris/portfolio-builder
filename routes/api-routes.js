@@ -1,6 +1,8 @@
+const express = require("express");
 const passport = require("../config/passport");
 const userController = require("../controllers/user");
-const express = require("express");
+const dashController = require("../controllers/dashboard");
+const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 const router = express.Router();
 
@@ -12,5 +14,27 @@ router.post("/api/login", passport.authenticate("local"), userController.login);
 router.post("/api/signup", userController.signup);
 
 router.get("/api/logout", userController.logout);
+
+router.patch("/api/profile", isAuthenticated, dashController.profileSave);
+
+router.patch(
+  "/api/repo/include/:id",
+  isAuthenticated,
+  dashController.repoInclude
+);
+
+router.patch(
+  "/api/profile/github",
+  isAuthenticated,
+  dashController.ghUsernameUpdate
+);
+
+router.patch(
+  "/api/profile/layout",
+  isAuthenticated,
+  dashController.updateLayout
+);
+
+router.patch("/api/profile/theme", isAuthenticated, dashController.updateTheme);
 
 module.exports = router;

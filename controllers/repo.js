@@ -1,26 +1,35 @@
 const db = require("../models");
 
-function findOrCreate(repo, userId) {
-  db.Repo.findOrCreate({
+function findOrCreate(repo, username) {
+  return db.Repo.findOrCreate({
     where: {
-      repoId: repo.id
+      repoId: repo.id,
+      UserUsername: username
     },
     defaults: {
       repoId: repo.id,
       name: repo.name,
       description: repo.description,
       repoUrl: repo.repoUrl,
-      UserId: userId
-    }
-  }).then();
-}
-
-function update(repo) {
-  db.Repo.update(repo, {
-    where: {
-      repoId: repo.id
+      UserUsername: username
     }
   });
+}
+
+function update(repo, username) {
+  return db.Repo.update(
+    {
+      name: repo.name,
+      description: repo.description,
+      repoUrl: repo.repoUrl
+    },
+    {
+      where: {
+        repoId: repo.id,
+        UserUsername: username
+      }
+    }
+  );
 }
 
 module.exports = {

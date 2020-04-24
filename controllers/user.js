@@ -37,7 +37,7 @@ function updateWhereNull(updateData, currentData) {
   if (!currentData.displayName) {
     fields.push("displayName");
   }
-  db.User.update(updateData, {
+  return db.User.update(updateData, {
     where: {
       username: currentData.username
     },
