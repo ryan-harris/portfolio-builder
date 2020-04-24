@@ -1,4 +1,4 @@
-    {{> navbar}}
+
     <div
       class="uk-child-width-expand uk-container"
       data-uk-grid-margin
@@ -13,9 +13,9 @@
       />
       <div class="uk-section uk-section-muted uk-width-3">
         <div class="uk-container" style="padding-left: 1em;">
-          <h3>Hi! I'm {{displayName}}</h3>
+          <h1>Hi! I'm {{displayName}}</h1>
           <br>
-          <h3>About Me</h3>
+          <h2>About Me</h2>
           <p>
             {{#if aboutMe}}
             {{aboutMe}}
@@ -27,16 +27,19 @@
 
     <div class="uk-container">
       <br>
-      <h3>My work</h3>
+      <h2>My work</h2>
       <div class="uk-grid-match uk-child-width-1-3@s " uk-grid>
         {{#each Repos}}
         <div class="uk-grid-item-match">
           <div class="uk-card uk-card-default uk-card-body uk-inline">
             <h3>{{name}}</h3>
-            <p>{{description}}</p>
+            <hr>
+            {{#if description}}
+              <p>{{description}}</p>
+             {{/if}}
             <br>
             <div class="uk-position-bottom uk-container" style="padding-bottom: 1em;">
-              <a href="{{repoUrl}}" class="uk-align-center uk-button uk-button-primary" style="width: 12em;">Repository ></a>
+              <a class="uk-align-center uk-button uk-button-default" style="width: 12em;" href=" {{ repoUrl }} ">Github Repo</a>
               <!-- <a href="{{repoUrl}}" style="padding-left: 1em;">Repository ></a>
               <a href="{{demoUrl}}" class="uk-align-right" style="padding-right: 1em;">Deployed Version ></a> -->
             </div>
