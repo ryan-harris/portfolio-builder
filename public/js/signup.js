@@ -46,7 +46,7 @@ $(() => {
       .catch(err => {
         removeSpinner();
         if (err.status === 401) {
-          handleLoginErr("A user with that username has already been created");
+          handleLoginErr("That username already exists");
         } else {
           handleLoginErr(err.response);
         }
