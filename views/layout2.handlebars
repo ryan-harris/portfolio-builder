@@ -6,11 +6,13 @@
   <link rel="stylesheet" href="/themes/{{theme}}.css">
   <title> {{userData.username}} </title>
   <style>
-    
     body {
       margin: 0;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7accf94b0650228871c96e06556c2eee32aa2721
     .profileImage {
       height: 300px;
       width: 300px;
@@ -19,60 +21,57 @@
       background-size: cover;
       background-position: center;
      }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7accf94b0650228871c96e06556c2eee32aa2721
     .container1 {
       height: 100vh;
     }
-
     .container2 {
       padding-top: 100px;
       padding-bottom: 200px;
     }
-
     .intro {
       text-align: center;
     }
-
     .userImg {
       border-radius: 40%;
       width: 300px;
     }
-
     .aboutme {
       width: 60%;
       margin: 0 auto;
       margin-bottom: 100px;
     }
-
     .aboutme > h2 {
       font-size: 60px;
     }
-
     .projects {
       width: 60%;
       margin: 0 auto;
     }
-
     .projects > h2 {
       font-size: 60px;
       text-align: right;
     }
-
     .uk-accordion-title{
       font-size: 32px;
     }
-
-
   </style>
 </head>
-
 <body>
   <div class="container1 uk-flex uk-flex-column uk-flex-middle uk-flex-center">
+<<<<<<< HEAD
     <div class="intro profileImage"></div>
     <h1>Hi Im {{ displayName }}</h1>
 
+=======
+    <div class="intro profileImage">
+    </div>
+    <h1>Hi I'm {{ displayName }}</h1>
+>>>>>>> 7accf94b0650228871c96e06556c2eee32aa2721
   </div>
-
   <div class="container2">
     <div class="aboutme">
       <hr>
@@ -81,12 +80,10 @@
         <p>{{aboutMe}}</p>
       {{/if}}
     </div>
-
     <div  class="projects">
       <hr>
       <h2>Projects</h2>
       <ul uk-accordion>
-
         {{#each Repos}}
           <li>
             <a class="uk-accordion-title" href="#">{{name}}</a>
@@ -98,11 +95,9 @@
             </div>
           </li>
         {{/each}}
-      
       </ul>
     <div>
   </div>
-
   <!-- UIkit JS -->
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit-icons.min.js"></script>
