@@ -3,36 +3,36 @@ const repoController = require("../controllers/repo");
 const userController = require("../controllers/user");
 
 async function buildUserInfo(req, res, next) {
-  const githubUserInfo = await getUserInfo(req.user.ghUsername); //object
-  const githubUserRepos = await getUserRepos(req.user.ghUsername); //array
   const databaseData = await userController.getUser(req.user.username);
+  const githubUserInfo = await getUserInfo(databaseData.ghUsername); //object
+  const githubUserRepos = await getUserRepos(databaseData.ghUsername); //array
 
   //update user info where columns null
-  userController.updateWhereNull(githubUserInfo, databaseData);
-  githubUserRepos.forEach(repo => {
-    repoController.findOrCreate(repo, databaseData.id);
-    repoController.update(repo);
+  await userController.updateWhereNull(githubUserInfo, databaseData);
+  githubUserRepos.forEach(async repo => {
+    await repoController.findOrCreate(repo, req.user.username);
+    await repoController.update(repo);
   });
   req.userData = await constructData(req.user.username);
 
   next();
 }
 
-function getUserInfo(userName) {
+function getUserInfo(username) {
   return axios
-    .get("https://api.github.com/users/" + userName)
+    .get("https://api.github.com/users/" + username)
     .then(response => {
       return {
         profileImg: response.data.avatar_url,
         aboutMe: response.data.bio,
-        displayName: response.data.name
+        displayName: response.data.name || username
       };
     });
 }
 
-function getUserRepos(userName) {
+function getUserRepos(username) {
   return axios
-    .get("https://api.github.com/users/" + userName + "/repos")
+    .get("https://api.github.com/users/" + username + "/repos")
     .then(response => {
       return response.data.map(repo => {
         return {

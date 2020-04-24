@@ -10,21 +10,21 @@ const router = express.Router();
 
 router.get("/", function(req, res) {
   if (req.user) {
-    res.redirect("/dashboard");
+    return res.redirect("/dashboard");
   }
   res.render("index");
 });
 
 router.get("/login", function(req, res) {
   if (req.user) {
-    res.redirect("/dashboard");
+    return res.redirect("/dashboard");
   }
   res.render("login");
 });
 
 router.get("/signup", function(req, res) {
   if (req.user) {
-    res.redirect("/dashboard");
+    return res.redirect("/dashboard");
   }
   res.render("signup");
 });
@@ -33,7 +33,7 @@ router.get("/dashboard", isAuthenticated, buildUserInfo, function(req, res) {
   // res.render("dashboard", req.userData);
   // console.log(req.userData);
   // res.sendStatus(200);
-  res.render("dashboard", { ...req.userData, layout: "main" });
+  return res.render("dashboard", { ...req.userData, layout: "main" });
 });
 
 router.get("/:username", function(req, res) {

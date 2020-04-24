@@ -1,7 +1,7 @@
 const db = require("../models");
 
-function findOrCreate(repo, userId) {
-  db.Repo.findOrCreate({
+function findOrCreate(repo, username) {
+  return db.Repo.findOrCreate({
     where: {
       repoId: repo.id
     },
@@ -10,17 +10,24 @@ function findOrCreate(repo, userId) {
       name: repo.name,
       description: repo.description,
       repoUrl: repo.repoUrl,
-      UserId: userId
+      UserUsername: username
     }
-  }).then();
+  });
 }
 
 function update(repo) {
-  db.Repo.update(repo, {
-    where: {
-      repoId: repo.id
+  return db.Repo.update(
+    {
+      name: repo.name,
+      description: repo.description,
+      repoUrl: repo.repoUrl
+    },
+    {
+      where: {
+        repoId: repo.id
+      }
     }
-  });
+  );
 }
 
 module.exports = {
