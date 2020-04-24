@@ -8,6 +8,7 @@ function login(req, res) {
 }
 
 function signup(req, res) {
+  console.log(req);
   db.User.create({
     username: req.body.username,
     password: req.body.password,

@@ -8,11 +8,14 @@ async function buildUserInfo(req, res, next) {
   const githubUserRepos = await getUserRepos(databaseData.ghUsername); //array
 
   //update user info where columns null
-  await userController.updateWhereNull(githubUserInfo, databaseData);
-  githubUserRepos.forEach(repo => {
-    repoController.findOrCreate(repo, req.user.username);
-    repoController.update(repo, req.user.username);
-  });
+  if (githubUserInfo && githubUserRepos) {
+    await userController.updateWhereNull(githubUserInfo, databaseData);
+    githubUserRepos.forEach(repo => {
+      repoController.findOrCreate(repo, req.user.username);
+      repoController.update(repo, req.user.username);
+    });
+  }
+
   req.userData = await constructData(req.user.username);
 
   next();
@@ -27,6 +30,9 @@ function getUserInfo(username) {
         aboutMe: response.data.bio,
         displayName: response.data.name || username
       };
+    })
+    .catch(() => {
+      return null;
     });
 }
 
@@ -42,6 +48,9 @@ function getUserRepos(username) {
           repoUrl: repo.html_url
         };
       });
+    })
+    .catch(() => {
+      return null;
     });
 }
 
