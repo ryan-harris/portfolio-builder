@@ -2,6 +2,10 @@ const axios = require("axios");
 const repoController = require("../controllers/repo");
 const userController = require("../controllers/user");
 
+if (process.env.ACCESS_TOKEN) {
+  axios.defaults.headers.common.Authorization = `token ${process.env.ACCESS_TOKEN}`;
+}
+
 async function buildUserInfo(req, res, next) {
   const databaseData = await userController.getUser(req.user.username);
   const githubUserInfo = await getUserInfo(databaseData.ghUsername); //object
@@ -23,7 +27,7 @@ async function buildUserInfo(req, res, next) {
 
 function getUserInfo(username) {
   return axios
-    .get("https://api.github.com/users/" + username)
+    .get(`https://api.github.com/users/${username}`)
     .then(response => {
       return {
         profileImg: response.data.avatar_url,
@@ -38,7 +42,7 @@ function getUserInfo(username) {
 
 function getUserRepos(username) {
   return axios
-    .get("https://api.github.com/users/" + username + "/repos")
+    .get(`https://api.github.com/users/${username}/repos`)
     .then(response => {
       return response.data.map(repo => {
         return {
