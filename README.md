@@ -21,7 +21,7 @@ This app is for a developer that has a GitHub account that wants to create a por
 
 ## Screenshots
 
-![Example screenshot](./img/screenshot.png)
+![Example gif](/public/images/project.gif)
 
 ## Technologies
 
@@ -63,7 +63,7 @@ To-do list:
 
 Project is: _in progress_
 
-- Make sure to check the application [here](#).
+- Make sure to check the application [here](https://github-portfolio-builder.herokuapp.com/).
 
 ## Inspiration
 
