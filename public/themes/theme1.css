@@ -1,0 +1,27 @@
+body {
+  background-color: white;
+}
+
+h1,
+h2,
+h3,
+p,
+a,
+.uk-button {
+  color: #272c3c;
+}
+
+.uk-card,
+.uk-section,
+.uk-button,
+.uk-button:hover,
+.uk-accordion-title:active {
+  background-color: white;
+  color: #272c3c;
+}
+
+.uk-accordion-title,
+.uk-accordion-title:hover,
+.uk-accordion-title:focus {
+  color: #272c3c;
+}

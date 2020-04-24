@@ -33,7 +33,7 @@ router.get("/dashboard", isAuthenticated, buildUserInfo, function(req, res) {
   // res.render("dashboard", req.userData);
   // console.log(req.userData);
   // res.sendStatus(200);
-  res.render("dashboard", { ...req.userData, layout: "main" });
+  res.render("dashboard", req.userData);
 });
 
 router.get("/:username", function(req, res) {
@@ -42,7 +42,7 @@ router.get("/:username", function(req, res) {
     if (!userData) {
       return res.sendStatus(404);
     }
-    res.render(userData.layout, {
+    res.render("layout2", {
       ...userData.toJSON(),
       layout: "public"
     });
