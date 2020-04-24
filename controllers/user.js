@@ -54,10 +54,25 @@ function getUser(username) {
   });
 }
 
+function getIncludedRepos(username) {
+  return db.User.findOne({
+    include: {
+      model: db.Repo,
+      where: {
+        included: true
+      }
+    },
+    where: {
+      username: username
+    }
+  });
+}
+
 module.exports = {
   login,
   signup,
   logout,
   updateWhereNull,
-  getUser
+  getUser,
+  getIncludedRepos
 };

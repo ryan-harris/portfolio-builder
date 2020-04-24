@@ -38,7 +38,7 @@ router.get("/dashboard", isAuthenticated, buildUserInfo, function(req, res) {
 
 router.get("/:username", function(req, res) {
   // determine layout and render layout with req.userData
-  userController.getUser(req.params.username).then(userData => {
+  userController.getIncludedRepos(req.params.username).then(userData => {
     if (!userData) {
       return res.sendStatus(404);
     }
