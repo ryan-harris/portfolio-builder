@@ -14,14 +14,14 @@ router.get("/", function(req, res) {
 
 router.get("/login", function(req, res) {
   if (req.user) {
-    res.redirect("/dashboard");
+    return res.redirect("/dashboard");
   }
   res.render("login");
 });
 
 router.get("/signup", function(req, res) {
   if (req.user) {
-    res.redirect("/dashboard");
+    return res.redirect("/dashboard");
   }
   res.render("signup");
 });
