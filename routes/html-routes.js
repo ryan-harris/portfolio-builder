@@ -33,7 +33,7 @@ router.get("/dashboard", isAuthenticated, buildUserInfo, function(req, res) {
   // res.render("dashboard", req.userData);
   // console.log(req.userData);
   // res.sendStatus(200);
-  res.render("dashboard", req.userData);
+  res.render("dashboard", { ...req.userData, layout: "main" });
 });
 
 router.get("/:username", function(req, res) {
