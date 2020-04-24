@@ -21,7 +21,7 @@ This app is for a developer that has a GitHub account that wants to create a por
 
 ## Screenshots
 
-![Example screenshot](./img/screenshot.png)
+![Example gif](/public/images/project.gif)
 
 ## Technologies
 
