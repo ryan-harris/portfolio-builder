@@ -1,17 +1,30 @@
+<style>
+  #navbar.uk-navbar-container{
+    background-image: url("/images/background1.png");
+  }
+</style>
 
-<nav class="uk-navbar-container" uk-navbar>
+<nav id="navbar" class="uk-navbar-container navbar" uk-navbar>
   <div class="uk-navbar-left">
-    <a class="uk-navbar-item uk-logo" href="#">GHPort</a>
+    <a id="logoText"class="uk-navbar-item uk-logo uk-text-large text-white" href="#">GHPort</a>
   </div>
-
   <div class="uk-navbar-right">
-    <div class="uk-margin-right profile-image"></div>
+    <div class="uk-inline">
+          <div class="uk-margin-right profile-image " ></div>
+          <div uk-dropdown="mode: hover">
+            <ul class="uk-nav uk-dropdown-nav">
+              <li><a href="{{this.username}}">View Portfolio</a></li>
+              <li><a href="/api/logout">Logout</a></li>
+            </ul>
+          </div>
+    </div>
+
   </div>
 </nav>
 <div class="uk-container uk-margin">
   <div class="uk-child-width-1-2@s" uk-grid>
     <div>
-      <div class="uk-card uk-card-default uk-card-body">
+      <div class="uk-card uk-card-default uk-card-body uk-background-muted">
         <ul id="profileSection" uk-accordion>
           <li>
             <a class="uk-accordion-title" href="#">
@@ -129,7 +142,7 @@
     </div>
 
     <div>
-      <div class="uk-card uk-card-default uk-card-body">
+      <div class="uk-card uk-card-default uk-card-body uk-background-muted">
         <ul uk-accordion>
           <li>
             <a class="uk-accordion-title" href="#">
@@ -177,7 +190,7 @@
 </div>
 
 <div class="uk-container">
-  <div class="uk-card uk-card-default uk-card-body uk-width-1-1">
+  <div class="uk-card uk-card-default uk-card-body uk-width-1-1 uk-background-muted">
     <ul uk-accordion>
       <li class="uk-open ">
         <a class="uk-accordion-title" href="#">
@@ -190,15 +203,9 @@
         <div class="uk-accordion-content">
           <div class="uk-grid-small uk-grid-match uk-child-width-1-2@s uk-child-width-1-3@m" uk-grid>
             {{#each repos}}
-              <div>
+              <div id="repoCard" class="{{#unless this.included}}opac-50{{/unless}}">
                 <div class="uk-card uk-card-default uk-card-body">
-                  {{!-- <input type="checkbox" 
-                    class="toggle-repo uk-checkbox" 
-                    {{#if this.included}}checked{{/if}} 
-                    data-repoid="{{repoId}}" 
-                  /> --}}
-
-                  <label class="switch">
+                  <label class="switch" uk-tooltip="Include in portfolio?">
                     <input 
                       class="toggle-repo"
                       type="checkbox" 
@@ -207,13 +214,6 @@
                     <span class="slider round"></span>
                   </label>
                   <label class="uk-form-label"></label>
-                  {{!-- <button class="uk-card-badge uk-label uk-label-success uk-button">
-                    {{#if this.included}}
-                    <span uk-icon="icon: check"></span>
-                    {{else}}
-                    Hidden
-                    {{/if}}
-                  </button> --}}
                   <h3 class="uk-card-title uk-margin-top ">{{this.name}}</h3>
                   <div>
                     <p>
