@@ -42,7 +42,7 @@ router.get("/:username", function(req, res) {
     if (!userData) {
       return res.sendStatus(404);
     }
-    res.render("layout2", {
+    res.render(userData.layout, {
       ...userData.toJSON(),
       layout: "public"
     });
