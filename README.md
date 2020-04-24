@@ -17,7 +17,7 @@
 
 ## General info
 
-Add more general information about project. What the purpose of the project is? Motivation?
+This app is for a developer that has a GitHub account that wants to create a portfolio website from his/her selected repositories, without knowing anything about web development. So that he/she can can display his/her favorite GitHub repos nicely formatted!
 
 ## Screenshots
 
@@ -25,39 +25,49 @@ Add more general information about project. What the purpose of the project is? 
 
 ## Technologies
 
-- Tech 1 - version 1.0
-- Tech 2 - version 2.0
-- Tech 3 - version 3.0
+- JavaScript
+- CSS 3
+- HTML 5
+- Node.js
+- Express
+- MySQL
+- Sequelize
+- Handlebars
+- GitHub API
 
 ## Setup
 
-Describe how to install / setup your local environement / add link to demo version.
+This application runs in the browser. Nothing needs to be installed except for your default browser.
+
+- Repository can be found here: [GitHub](https://github.com/ryan-harris/portfolio-builder) Make sure to git clone and check out the code!
 
 ## Code Examples
 
 Show examples of usage:
-`put-your-code-here`
+`return axios.get("https://api.github.com/users/" + username).then();`
 
 ## Features
 
-List of features ready and TODOs for future development
+List of features:
 
-- Awesome feature 1
-- Awesome feature 2
-- Awesome feature 3
+- Authenticate user.
+- Select repos from GitHub.
+- Create portfolio website.
 
 To-do list:
 
-- Wow improvement to be done 1
-- Wow improvement to be done 2
+- Add more layouts/themes.
+- Add contact me section.
 
 ## Status
 
-Project is: _in progress_, _finished_, _no longer continue_ and why?
+Project is: _in progress_
+
+- Make sure to check the application [here](#).
 
 ## Inspiration
 
-Add here credits. Project inspired by..., based on...
+Project inspired by UCSD Coding Bootcamp, based on second month of course, utilizing the GitHub API and applying MySql, Express.js, Handlebars, jQuery and JavaScript skills.
 
 ## Contact
 
