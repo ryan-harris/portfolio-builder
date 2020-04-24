@@ -4,7 +4,8 @@ function profileSave(req, res) {
   db.User.update(
     {
       profileImg: req.body.profileImg,
-      aboutMe: req.body.aboutMe
+      aboutMe: req.body.aboutMe,
+      displayName: req.body.displayName
     },
     {
       where: {
@@ -26,7 +27,8 @@ function repoInclude(req, res) {
     },
     {
       where: {
-        repoId: req.params.id
+        repoId: req.params.id,
+        UserUsername: req.user.username
       }
     }
   ).then(data => {
@@ -61,8 +63,46 @@ function ghUsernameUpdate(req, res) {
   });
 }
 
+function updateLayout(req, res) {
+  db.User.update(
+    {
+      layout: req.body.layout
+    },
+    {
+      where: {
+        username: req.user.username
+      }
+    }
+  ).then(data => {
+    if (data[0] === 0) {
+      return res.sendStatus(404);
+    }
+    res.sendStatus(200);
+  });
+}
+
+function updateTheme(req, res) {
+  db.User.update(
+    {
+      theme: req.body.theme
+    },
+    {
+      where: {
+        username: req.user.username
+      }
+    }
+  ).then(data => {
+    if (data[0] === 0) {
+      return res.sendStatus(404);
+    }
+    res.sendStatus(200);
+  });
+}
+
 module.exports = {
   profileSave,
   repoInclude,
-  ghUsernameUpdate
+  ghUsernameUpdate,
+  updateLayout,
+  updateTheme
 };

@@ -12,6 +12,8 @@ $(() => {
   const repoCheckbox = $(".toggle-repo");
   const cancelUsername = $("#cancelUsername");
   const saveUsername = $("#saveUsername");
+  const layoutRadio = $(".layout-radio");
+  const themePicker = $("#themePicker");
 
   editUserNameButton.on("click", toggleEditingGhUsername);
 
@@ -89,6 +91,29 @@ $(() => {
       type: "PATCH",
       data: JSON.stringify(updateData),
       contentType: "application/json; charset=UTF-8"
+    });
+  });
+
+  layoutRadio.on("click", function() {
+    const updateData = {
+      layout: $(this).data("layout")
+    };
+
+    $.ajax("/api/profile/layout", {
+      type: "PATCH",
+      data: updateData
+    });
+  });
+
+  themePicker.on("click", function() {
+    const theme = $(this).prop("checked") ? "theme2" : "theme1";
+    const updateData = {
+      theme: theme
+    };
+
+    $.ajax("/api/profile/theme", {
+      type: "PATCH",
+      data: updateData
     });
   });
 });

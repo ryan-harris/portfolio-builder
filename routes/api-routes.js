@@ -29,4 +29,12 @@ router.patch(
   dashController.ghUsernameUpdate
 );
 
+router.patch(
+  "/api/profile/layout",
+  isAuthenticated,
+  dashController.updateLayout
+);
+
+router.patch("/api/profile/theme", isAuthenticated, dashController.updateTheme);
+
 module.exports = router;

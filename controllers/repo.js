@@ -3,7 +3,8 @@ const db = require("../models");
 function findOrCreate(repo, username) {
   return db.Repo.findOrCreate({
     where: {
-      repoId: repo.id
+      repoId: repo.id,
+      UserUsername: username
     },
     defaults: {
       repoId: repo.id,
@@ -15,7 +16,7 @@ function findOrCreate(repo, username) {
   });
 }
 
-function update(repo) {
+function update(repo, username) {
   return db.Repo.update(
     {
       name: repo.name,
@@ -24,7 +25,8 @@ function update(repo) {
     },
     {
       where: {
-        repoId: repo.id
+        repoId: repo.id,
+        UserUsername: username
       }
     }
   );

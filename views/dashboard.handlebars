@@ -145,7 +145,7 @@
                 <div class="uk-flex uk-flex-middle">
                   <span class="uk-margin-small-right">Light</span>
                   <label class="switch">
-                    <input type="checkbox">
+                    <input type="checkbox" id="themePicker" {{#ifEq theme "theme2"}}checked{{/ifEq}}/>
                     <span class="slider round"></span>
                   </label>
                   <span class="uk-margin-small-left">Dark</span>
@@ -154,9 +154,11 @@
                 <h3>Layout</h3>
                 <form>
                   <div class="uk-flex">
-                    <input class="uk-radio" type="radio" name="radio2" checked>
+                    <input class="layout-radio uk-radio" type="radio" name="radio2" 
+                     data-layout="layout1" {{#ifEq userlayout "layout1"}}checked{{/ifEq}}/>
                     <div class="uk-card uk-card-body"><p>Layout 1 Image</p></div>
-                    <input class="uk-radio" type="radio" name="radio2">
+                    <input class="layout-radio uk-radio" type="radio" name="radio2" 
+                     data-layout="layout2" {{#ifEq userlayout "layout2"}}checked{{/ifEq}}/>
                     <div class="uk-card uk-card-body"><p>Layout 2 Image</p></div>
                   </div>
                 </form>
@@ -207,7 +209,7 @@
                 <p>
                   {{this.description}}
                 </p>
-                {{!-- <a href="{{this.repoUrl}}" target="_BLANK">Visit Repo</a> --}}
+                <a href="{{this.repoUrl}}" target="_BLANK">Visit Repo</a>
               </div>
             </div>
           {{/each}}

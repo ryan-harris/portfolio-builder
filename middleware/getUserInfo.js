@@ -9,9 +9,9 @@ async function buildUserInfo(req, res, next) {
 
   //update user info where columns null
   await userController.updateWhereNull(githubUserInfo, databaseData);
-  githubUserRepos.forEach(async repo => {
-    await repoController.findOrCreate(repo, req.user.username);
-    await repoController.update(repo);
+  githubUserRepos.forEach(repo => {
+    repoController.findOrCreate(repo, req.user.username);
+    repoController.update(repo, req.user.username);
   });
   req.userData = await constructData(req.user.username);
 
@@ -56,7 +56,7 @@ async function constructData(username) {
     aboutMe: userData.aboutMe,
     profileImage: userData.profileImg,
     theme: userData.theme,
-    layout: userData.layout,
+    userlayout: userData.layout,
     ghUsername: userData.ghUsername,
     username: userData.username
   };
