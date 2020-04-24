@@ -3,16 +3,16 @@ const repoController = require("../controllers/repo");
 const userController = require("../controllers/user");
 
 async function buildUserInfo(req, res, next) {
-  const databaseData = await userController.getUser(req.user.username);
-  const githubUserInfo = await getUserInfo(databaseData.ghUsername); //object
-  const githubUserRepos = await getUserRepos(databaseData.ghUsername); //array
+  // const databaseData = await userController.getUser(req.user.username);
+  // const githubUserInfo = await getUserInfo(databaseData.ghUsername); //object
+  // const githubUserRepos = await getUserRepos(databaseData.ghUsername); //array
 
-  //update user info where columns null
-  await userController.updateWhereNull(githubUserInfo, databaseData);
-  githubUserRepos.forEach(repo => {
-    repoController.findOrCreate(repo, req.user.username);
-    repoController.update(repo, req.user.username);
-  });
+  // //update user info where columns null
+  // await userController.updateWhereNull(githubUserInfo, databaseData);
+  // githubUserRepos.forEach(repo => {
+  //   repoController.findOrCreate(repo, req.user.username);
+  //   repoController.update(repo, req.user.username);
+  // });
   req.userData = await constructData(req.user.username);
 
   next();
