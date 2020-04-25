@@ -7,7 +7,6 @@ if (process.env.ACCESS_TOKEN) {
 }
 
 async function buildUserInfo(req, res, next) {
-  console.time("start");
   const userData = await userController.getUser(req.user.username);
   const ghUserInfo = await getUserInfo(userData.ghUsername); //object
   let ghRepos = [];
@@ -25,8 +24,6 @@ async function buildUserInfo(req, res, next) {
   }
 
   req.userData = await constructData(req.user.username);
-
-  console.timeEnd("start");
 
   next();
 }
