@@ -41,7 +41,6 @@
           <th>GitHub Username</th>
           <th>Signed Up</th>
           <th>Number Of Repos</th>
-          <th>Status</th>
           <th>Remove User</th>
         </tr>
         {{#each stats.userData}}
@@ -50,7 +49,6 @@
           <td>{{this.ghUsername}}</td>
           <td>{{this.signedUp}}</td>
           <td>{{this.totalRepos}}</td>
-          <td>{{this.stats.repos}}</td>
           <td><button data-user="{{this.username}}" class="uk-button-danger deleteUser">Delete</button></td>
         </tr>
         {{/each}}
