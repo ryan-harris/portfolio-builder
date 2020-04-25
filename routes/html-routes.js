@@ -28,9 +28,6 @@ router.get("/signup", function(req, res) {
 });
 
 router.get("/dashboard", isAuthenticated, buildUserInfo, function(req, res) {
-  // res.render("dashboard", req.userData);
-  // console.log(req.userData);
-  // res.sendStatus(200);
   req.userData.repos = formatRepoNames(req.userData.repos);
   return res.render("dashboard", { ...req.userData, layout: "main" });
 });
@@ -42,7 +39,6 @@ router.get("/:username", function(req, res) {
       return res.sendStatus(404);
     }
     userData = userData.toJSON();
-    // formatRepoNames(req);
     userData.Repos = formatRepoNames(userData.Repos);
 
     res.render(userData.layout, {
