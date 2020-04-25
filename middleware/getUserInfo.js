@@ -1,4 +1,5 @@
 const axios = require("axios");
+const array = require("lodash/array");
 const repoController = require("../controllers/repo");
 const userController = require("../controllers/user");
 
@@ -7,20 +8,43 @@ if (process.env.ACCESS_TOKEN) {
 }
 
 async function buildUserInfo(req, res, next) {
-  const userData = await userController.getUser(req.user.username);
+  const userData = await userController
+    .getUser(req.user.username)
+    .then(user => user.toJSON());
   const ghUserInfo = await getUserInfo(userData.ghUsername); //object
   let ghRepos = [];
   if (ghUserInfo) {
     ghRepos = await getUserRepos(userData.ghUsername, ghUserInfo.numberRepos);
   }
 
-  //update user info where columns null
-  if (ghUserInfo && ghRepos) {
-    await userController.updateWhereNull(ghUserInfo, userData);
-    ghRepos.forEach(repo => {
-      repoController.findOrCreate(repo, req.user.username);
-      repoController.update(repo, req.user.username);
-    });
+  const a = userData.Repos;
+  const b = ghRepos;
+
+  const toUpdate = array.intersectionWith(
+    b,
+    a,
+    (b, a) =>
+      a.repoId === b.repoId &&
+      a.lastUpdate.getTime() !== Date.parse(b.lastUpdate)
+  );
+
+  const toCreate = array.differenceWith(b, a, (a, b) => {
+    return a.repoId === b.repoId;
+  });
+
+  const toDelete = array.differenceWith(a, b, (a, b) => {
+    return a.repoId === b.repoId;
+  });
+
+  await userController.updateWhereNull(ghUserInfo, userData);
+  for (let i = 0; i < toCreate.length; i++) {
+    await repoController.create(toCreate[i], req.user.username);
+  }
+  for (let i = 0; i < toUpdate.length; i++) {
+    await repoController.update(toUpdate[i], req.user.username);
+  }
+  for (let i = 0; i < toDelete.length; i++) {
+    await repoController.destroy(toDelete[i], req.user.username);
   }
 
   req.userData = await constructData(req.user.username);
@@ -63,10 +87,11 @@ function getUserRepos(username, numberRepos) {
     });
     return repos.flat().map(repo => {
       return {
-        id: repo.id,
+        repoId: repo.id,
         name: repo.name,
         description: repo.description,
-        repoUrl: repo.html_url
+        repoUrl: repo.html_url,
+        lastUpdate: repo.updated_at
       };
     });
   });
