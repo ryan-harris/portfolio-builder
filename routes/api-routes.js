@@ -2,7 +2,7 @@ const express = require("express");
 const passport = require("../config/passport");
 const userController = require("../controllers/user");
 const dashController = require("../controllers/dashboard");
-const isAuthenticated = require("../config/middleware/isAuthenticated");
+const isAuthenticated = require("../middleware/isAuthenticated");
 
 const router = express.Router();
 
