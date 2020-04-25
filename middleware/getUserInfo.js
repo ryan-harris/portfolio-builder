@@ -1,4 +1,5 @@
 const axios = require("axios");
+const array = require("lodash/array");
 const repoController = require("../controllers/repo");
 const userController = require("../controllers/user");
 
@@ -7,21 +8,63 @@ if (process.env.ACCESS_TOKEN) {
 }
 
 async function buildUserInfo(req, res, next) {
-  const userData = await userController.getUser(req.user.username);
+  const userData = await userController
+    .getUser(req.user.username)
+    .then(user => user.toJSON());
   const ghUserInfo = await getUserInfo(userData.ghUsername); //object
   let ghRepos = [];
   if (ghUserInfo) {
     ghRepos = await getUserRepos(userData.ghUsername, ghUserInfo.numberRepos);
   }
 
+  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>database", userData.Repos.length);
+  userData.Repos.forEach(repo => {
+    console.log(`${repo.name}(${repo.repoId}) ${repo.lastUpdate.getTime()}`);
+  });
+  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>github", ghRepos.length);
+  ghRepos.forEach(repo => {
+    console.log(`${repo.name}(${repo.repoId}) ${Date.parse(repo.lastUpdate)}`);
+  });
+
+  const a = userData.Repos;
+  const b = ghRepos;
+
+  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>UPDATE");
+  const toUpdate = array.intersectionWith(
+    b,
+    a,
+    (b, a) =>
+      a.repoId === b.repoId &&
+      a.lastUpdate.getTime() !== Date.parse(b.lastUpdate)
+  );
+  toUpdate.forEach(repo =>
+    console.log(`${repo.name}(${repo.repoId}) ${Date.parse(repo.lastUpdate)}`)
+  );
+
+  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>CREATE");
+  const toCreate = array.differenceWith(b, a, (a, b) => {
+    return a.repoId === b.repoId;
+  });
+  toCreate.forEach(repo =>
+    console.log(`${repo.name}(${repo.repoId}) ${Date.parse(repo.lastUpdate)}`)
+  );
+
+  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DELETE");
+  const toDelete = array.differenceWith(a, b, (a, b) => {
+    return a.repoId === b.repoId;
+  });
+  toDelete.forEach(repo =>
+    console.log(`${repo.name}(${repo.repoId}) ${repo.lastUpdate.getTime()}`)
+  );
+
   //update user info where columns null
-  if (ghUserInfo && ghRepos) {
-    await userController.updateWhereNull(ghUserInfo, userData);
-    ghRepos.forEach(repo => {
-      repoController.findOrCreate(repo, req.user.username);
-      repoController.update(repo, req.user.username);
-    });
-  }
+  // if (ghUserInfo && ghRepos) {
+  //   await userController.updateWhereNull(ghUserInfo, userData);
+  //   ghRepos.forEach(repo => {
+  //     repoController.findOrCreate(repo, req.user.username);
+  //     repoController.update(repo, req.user.username);
+  //   });
+  // }
 
   req.userData = await constructData(req.user.username);
 
@@ -63,10 +106,11 @@ function getUserRepos(username, numberRepos) {
     });
     return repos.flat().map(repo => {
       return {
-        id: repo.id,
+        repoId: repo.id,
         name: repo.name,
         description: repo.description,
-        repoUrl: repo.html_url
+        repoUrl: repo.html_url,
+        lastUpdate: repo.updated_at
       };
     });
   });

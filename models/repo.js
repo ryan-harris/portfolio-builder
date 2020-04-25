@@ -11,7 +11,8 @@ module.exports = function(sequelize, DataTypes) {
     repoId: DataTypes.INTEGER,
     description: DataTypes.STRING,
     repoUrl: DataTypes.STRING,
-    demoUrl: DataTypes.STRING
+    demoUrl: DataTypes.STRING,
+    lastUpdate: DataTypes.DATE
   });
 
   Repo.associate = models => {
