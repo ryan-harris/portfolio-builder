@@ -1,0 +1,35 @@
+<style>
+  #navbar.uk-navbar-container {
+    background: #222831;
+  }
+</style>
+
+<nav id="navbar" class="uk-navbar-container navbar" uk-navbar>
+  <div class="uk-navbar-left">
+    <a id="logoText" class="uk-navbar-item uk-logo uk-text-large text-white" href="/">Admin Dashboard</a>
+  </div>
+  <div class="uk-navbar-right ">
+    <a href="/api/logout" class="uk-margin-right text-white">Logout</a>
+  </div>
+</nav>
+<div class="uk-child-width-expands uk-padding" uk-grid>
+  <div>
+    <table class="uk-table uk-table-divider">
+      <tbody>
+        <tr>
+          <th>UserName</th>
+          <th>GitHub Username</th>
+          <th>Signed Up</th>
+        </tr>
+        {{#each users}}
+        <tr>
+          <td>{{this.username}}</td>
+          <td>{{this.ghUsername}}</td>
+          <td>{{this.signedUp}}</td>
+        </tr>
+        {{/each}}
+
+      </tbody>
+    </table>
+  </div>
+</div>

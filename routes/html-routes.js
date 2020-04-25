@@ -3,6 +3,7 @@ const express = require("express");
 const buildUserInfo = require("../middleware/getUserInfo");
 const userController = require("../controllers/user");
 const formatRepoNames = require("../middleware/formatRepoNames");
+const adminAuthentication = require("../middleware/adminAuthentication");
 
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../middleware/isAuthenticated");
@@ -47,5 +48,14 @@ router.get("/:username", function(req, res) {
     });
   });
 });
+
+router.get(
+  "/dashboard/admin",
+  adminAuthentication,
+  userController.getAllUsers,
+  function(req, res) {
+    res.render("admin", { users: req.userData });
+  }
+);
 
 module.exports = router;
