@@ -197,7 +197,6 @@
           <span class="uk-margin-small-right" uk-icon="icon: settings">
           </span>
           Repos
-          
         </a>
 
         <div class="uk-accordion-content">
@@ -206,35 +205,43 @@
                 <span uk-icon="icon: warning" class="uk-text-danger uk-margin-small-right" ></span>
                 <label class="uk-text-danger"> There were no repos found for this user</label>
               </div>
-
-
             {{/unless}}
-          <div class="uk-grid-small uk-grid-match uk-child-width-1-2@s uk-child-width-1-3@m" uk-grid>
-            {{#each repos}}
-              <div id="repoCard" class="{{#unless this.included}}opac-50{{/unless}}">
-                <div class="uk-card uk-card-default uk-card-body">
-                  <label class="switch" uk-tooltip="Include in Portfolio">
-                    <input 
-                      class="toggle-repo"
-                      type="checkbox" 
-                      id="themePicker" 
-                      data-repoid="{{repoId}}" {{#if this.included}}checked{{/if}} />
-                    <span class="slider round"></span>
-                  </label>
-                  <label class="uk-form-label"></label>
-                  <h3 class="uk-card-title uk-margin-top ">{{this.name}}</h3>
-                  <div>
-                    <p>
-                      {{this.description}}
-                    </p>
-                  </div>
-                   <div class="uk-container uk-position-bottom">
-                      <a href="{{this.repoUrl}}" class="uk-align-center uk-button " target="_BLANK">Visit Repo</a>
-                  </div>
-                </div>
-              </div>
-            {{/each}}
-          </div>
+            <div uk-filter="target: .js-filter">
+
+              <ul class="uk-subnav uk-subnav-pill">
+                <li uk-filter-control=".opac-50"><a href="#">Not Included</a></li>
+                <li uk-filter-control=".included"><a href="#">Included</a></li>
+                <li uk-filter-control=".repoCard"><a href="#">All</a></li>
+              </ul>
+
+              
+              <ul class="js-filter uk-child-width-1-3@m uk-grid-match" uk-grid>
+              {{#each repos}}
+              <li class="{{#if this.included}} included {{else}} opac-50{{/if}} repoCard">
+                    <div class="uk-card uk-card-default uk-card-body">
+                      <label class="switch" uk-tooltip="Include in portfolio?">
+                        <input 
+                          class="toggle-repo"
+                          type="checkbox" 
+                          id="themePicker" 
+                          data-repoid="{{repoId}}" {{#if this.included}}checked{{/if}} />
+                        <span class="slider round"></span>
+                      </label>
+                      <label class="uk-form-label"></label>
+                      <h3 class="uk-card-title uk-margin-top ">{{this.name}}</h3>
+                      <div>
+                        <p>
+                          {{this.description}}
+                        </p>
+                      </div>
+                      <div class="uk-container uk-position-bottom">
+                          <a href="{{this.repoUrl}}" class="uk-align-center uk-button " target="_BLANK">Visit Repo</a>
+                      </div>
+                    </div>
+                </li>
+              {{/each}}
+              </ul>
+            </div>
         </div>
       </li>
     </ul>
