@@ -4,6 +4,11 @@ $(() => {
   const passwordInput = $("input#password-input");
   const confirmInput = $("input#confirm-input");
   const githubInput = $("input#github-input");
+  const urlLabel = $("#urlLabel");
+
+  usernameInput.on("keyup", event => {
+    urlLabel.text(event.target.value);
+  });
 
   signUpForm.on("submit", function(event) {
     event.preventDefault();
