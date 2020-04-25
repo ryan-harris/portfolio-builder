@@ -7,7 +7,11 @@ module.exports = function(req, res, next) {
 
   // If the user is logged in, continue with the request to the restricted route
   if (req.user) {
-    return next();
+    if (req.user.username.toLowerCase() === "admin") {
+      return res.redirect("/dashboard/admin");
+    } else {
+      return next();
+    }
   }
 
   // If the user isn't logged in, redirect them to the login page
