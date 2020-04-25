@@ -2,7 +2,9 @@ const express = require("express");
 const passport = require("../config/passport");
 const userController = require("../controllers/user");
 const dashController = require("../controllers/dashboard");
+const adminController = require("../controllers/admin");
 const isAuthenticated = require("../middleware/isAuthenticated");
+const adminAuthenticated = require("../middleware/adminAuthentication");
 
 const router = express.Router();
 
@@ -36,5 +38,7 @@ router.patch(
 );
 
 router.patch("/api/profile/theme", isAuthenticated, dashController.updateTheme);
+
+router.delete("/api/:username", adminAuthenticated, adminController.removeUser);
 
 module.exports = router;
