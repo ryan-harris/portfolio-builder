@@ -9,7 +9,7 @@ function removeUser(req, res) {
     .then(function() {
       res.sendStatus(200);
     })
-    .catch(function(err) {
+    .catch(function() {
       res.sendStatus(404);
     });
 }
