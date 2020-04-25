@@ -2,7 +2,17 @@ const db = require("../models");
 const moment = require("moment");
 
 function removeUser(req, res) {
-  res.sendStatus(200);
+  db.User.destroy({
+    where: {
+      username: req.params.username
+    }
+  })
+    .then(function() {
+      res.sendStatus(200);
+    })
+    .catch(function() {
+      res.sendStatus(404);
+    });
 }
 
 async function getDatabaseStats() {
