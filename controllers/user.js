@@ -1,4 +1,5 @@
 const db = require("../models");
+const moment = require("moment");
 
 function login(req, res) {
   res.json({
@@ -69,11 +70,25 @@ function getIncludedRepos(username) {
   });
 }
 
+function getAllUsers(req, res, next) {
+  db.User.findAll({}).then(users => {
+    req.userData = users.map(user => {
+      return {
+        username: user.dataValues.username,
+        signedUp: moment(user.dataValues.createdAt).format("MMM Do YYYY"),
+        ghUsername: user.dataValues.ghUsername
+      };
+    });
+    next();
+  });
+}
+
 module.exports = {
   login,
   signup,
   logout,
   updateWhereNull,
   getUser,
-  getIncludedRepos
+  getIncludedRepos,
+  getAllUsers
 };
