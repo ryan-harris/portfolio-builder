@@ -17,19 +17,9 @@ async function buildUserInfo(req, res, next) {
     ghRepos = await getUserRepos(userData.ghUsername, ghUserInfo.numberRepos);
   }
 
-  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>database", userData.Repos.length);
-  userData.Repos.forEach(repo => {
-    console.log(`${repo.name}(${repo.repoId}) ${repo.lastUpdate.getTime()}`);
-  });
-  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>github", ghRepos.length);
-  ghRepos.forEach(repo => {
-    console.log(`${repo.name}(${repo.repoId}) ${Date.parse(repo.lastUpdate)}`);
-  });
-
   const a = userData.Repos;
   const b = ghRepos;
 
-  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>UPDATE");
   const toUpdate = array.intersectionWith(
     b,
     a,
@@ -37,34 +27,25 @@ async function buildUserInfo(req, res, next) {
       a.repoId === b.repoId &&
       a.lastUpdate.getTime() !== Date.parse(b.lastUpdate)
   );
-  toUpdate.forEach(repo =>
-    console.log(`${repo.name}(${repo.repoId}) ${Date.parse(repo.lastUpdate)}`)
-  );
 
-  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>CREATE");
   const toCreate = array.differenceWith(b, a, (a, b) => {
     return a.repoId === b.repoId;
   });
-  toCreate.forEach(repo =>
-    console.log(`${repo.name}(${repo.repoId}) ${Date.parse(repo.lastUpdate)}`)
-  );
 
-  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DELETE");
   const toDelete = array.differenceWith(a, b, (a, b) => {
     return a.repoId === b.repoId;
   });
-  toDelete.forEach(repo =>
-    console.log(`${repo.name}(${repo.repoId}) ${repo.lastUpdate.getTime()}`)
-  );
 
-  //update user info where columns null
-  // if (ghUserInfo && ghRepos) {
-  //   await userController.updateWhereNull(ghUserInfo, userData);
-  //   ghRepos.forEach(repo => {
-  //     repoController.findOrCreate(repo, req.user.username);
-  //     repoController.update(repo, req.user.username);
-  //   });
-  // }
+  await userController.updateWhereNull(ghUserInfo, userData);
+  for (let i = 0; i < toCreate.length; i++) {
+    await repoController.create(toCreate[i], req.user.username);
+  }
+  for (let i = 0; i < toUpdate.length; i++) {
+    await repoController.update(toUpdate[i], req.user.username);
+  }
+  for (let i = 0; i < toDelete.length; i++) {
+    await repoController.destroy(toDelete[i], req.user.username);
+  }
 
   req.userData = await constructData(req.user.username);
 

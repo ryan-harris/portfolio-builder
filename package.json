@@ -20,11 +20,8 @@
     "express": "^4.17.0",
     "express-handlebars": "^4.0.3",
     "express-session": "^1.16.1",
-<<<<<<< HEAD
     "lodash": "^4.17.15",
-=======
     "moment": "^2.24.0",
->>>>>>> d0e61187372b04bba8afdb95dfacba99de258c57
     "mysql2": "^1.6.5",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
