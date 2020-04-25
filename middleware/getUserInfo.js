@@ -9,7 +9,26 @@ if (process.env.ACCESS_TOKEN) {
 async function buildUserInfo(req, res, next) {
   const databaseData = await userController.getUser(req.user.username);
   const githubUserInfo = await getUserInfo(databaseData.ghUsername); //object
-  const githubUserRepos = await getUserRepos(databaseData.ghUsername); //array
+
+  const numberOfPages = Math.ceil(githubUserInfo.public_repos / 100);
+
+  const calls = [];
+  for (let i = 1; i <= numberOfPages; i++) {
+    calls.push(
+      axios.get(
+        `https://api.github.com/users/${databaseData.ghUsername}/repos?per_page=100&page=${i}`
+      )
+    );
+  }
+
+  const githubUserRepos = [];
+  Promise.all(calls).then(response => {
+    numberOfResponses = response.length;
+    response.forEach(repo => {
+      githubUserRepos.push(repo.data);
+    });
+    githubUserRepos = githubUserRepos.flat();
+  });
 
   //update user info where columns null
   if (githubUserInfo && githubUserRepos) {
