@@ -11,7 +11,10 @@ module.exports = function(sequelize, DataTypes) {
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      get() {
+        return;
+      }
     },
     theme: {
       type: DataTypes.STRING,
@@ -33,12 +36,12 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   User.prototype.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.password);
+    return bcrypt.compareSync(password, this.getDataValue("password"));
   };
 
   User.addHook("beforeCreate", function(user) {
     user.password = bcrypt.hashSync(
-      user.password,
+      user.getDataValue("password"),
       bcrypt.genSaltSync(10),
       null
     );

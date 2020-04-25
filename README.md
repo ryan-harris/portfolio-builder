@@ -12,7 +12,6 @@
 - [Setup](#setup)
 - [Features](#features)
 - [Status](#status)
-- [Inspiration](#inspiration)
 - [Contact](#contact)
 
 ## General info
@@ -58,16 +57,13 @@ To-do list:
 
 - Add more layouts/themes.
 - Add contact me section.
+- Add multiple
 
 ## Status
 
 Project is: _in progress_
 
-- Make sure to check the application [here](https://github-portfolio-builder.herokuapp.com/).
-
-## Inspiration
-
-Project inspired by UCSD Coding Bootcamp, based on second month of course, utilizing the GitHub API and applying MySql, Express.js, Handlebars, jQuery and JavaScript skills.
+- Make sure to check the application [here](https://ghport.herokuapp.com/).
 
 ## Contact
 

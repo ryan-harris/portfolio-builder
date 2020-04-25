@@ -3,9 +3,11 @@ const express = require("express");
 const buildUserInfo = require("../middleware/getUserInfo");
 const userController = require("../controllers/user");
 const formatRepoNames = require("../middleware/formatRepoNames");
+const adminAuthentication = require("../middleware/adminAuthentication");
+const adminController = require("../controllers/admin");
 
 // Requiring our custom middleware for checking if a user is logged in
-const isAuthenticated = require("../config/middleware/isAuthenticated");
+const isAuthenticated = require("../middleware/isAuthenticated");
 
 const router = express.Router();
 
@@ -28,9 +30,6 @@ router.get("/signup", function(req, res) {
 });
 
 router.get("/dashboard", isAuthenticated, buildUserInfo, function(req, res) {
-  // res.render("dashboard", req.userData);
-  // console.log(req.userData);
-  // res.sendStatus(200);
   req.userData.repos = formatRepoNames(req.userData.repos);
   return res.render("dashboard", { ...req.userData, layout: "main" });
 });
@@ -42,12 +41,24 @@ router.get("/:username", function(req, res) {
       return res.sendStatus(404);
     }
     userData = userData.toJSON();
-    // formatRepoNames(req);
     userData.Repos = formatRepoNames(userData.Repos);
 
     res.render(userData.layout, {
       ...userData,
       layout: "public"
+    });
+  });
+});
+
+router.get("/dashboard/admin", adminAuthentication, function(req, res) {
+  adminController.getDatabaseStats().then(data => {
+    res.render("admin", {
+      stats: {
+        storage: data.storage,
+        users: data.users,
+        repos: data.repos,
+        userData: data.userData
+      }
     });
   });
 });

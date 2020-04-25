@@ -4,12 +4,12 @@ module.exports = function(req, res, next) {
   // req.user = {};
   // req.user.username = "test";
   // req.user.password = "test";
-
-  // If the user is logged in, continue with the request to the restricted route
-  if (req.user) {
-    return next();
+  if (!req.user) {
+    res.redirect("/");
   }
-
-  // If the user isn't logged in, redirect them to the login page
-  return res.redirect("/");
+  if (req.user) {
+    if (req.user.username.toLowerCase() === "admin") {
+      return next();
+    }
+  }
 };

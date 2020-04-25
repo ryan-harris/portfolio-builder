@@ -83,10 +83,11 @@ $(() => {
 
   repoCheckbox.on("click", function() {
     $(this)
-      .closest("#repoCard")
-      .toggleClass("opac-50");
+      .closest(".repoCard")
+      .toggleClass("opac-50 included");
 
-    // console.log(parentDiv);
+    // UIkit.filter($(".js-filter"));
+
     const repoid = $(this).data("repoid");
     const updateData = {
       included: $(this).prop("checked")
