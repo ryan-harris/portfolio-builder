@@ -14,8 +14,46 @@ $(() => {
   const saveUsername = $("#saveUsername");
   const layoutRadio = $(".layout-radio");
   const themePicker = $("#themePicker");
+  const filterInput = $("#filterInput");
 
   editUserNameButton.on("click", toggleEditingGhUsername);
+
+  // Input for filtering repos listener
+  // $("#searchForm").on("submit", event => {
+  //   event.preventDefault();
+
+  //   const regex = new RegExp(`${$("#filterInput").val()}`, "gi");
+  //   if (
+  //     $("#filterInput")
+  //       .val()
+  //       .trim()
+  //   ) {
+  //     $(".repoCard").css("display", "none");
+
+  //     $(".repoCard")
+  //       .filter((i, obj) => {
+  //         return regex.test($(obj).data("name"));
+  //       })
+  //       .show();
+  //   } else {
+  //     $(".repoCard").show();
+  //   }
+  //   $(".repoCard").
+  //   $(".repoCard").addClass("uk-height-1-1");
+  // });
+
+  filterInput.on("keyup", event => {
+    const searchValue = event.target.value.split(" ").join("");
+    if (searchValue === "") {
+      $("#filter").attr("uk-filter-control", "");
+    } else {
+      $("#filter").attr(
+        "uk-filter-control",
+        "filter:[data-name*='" + searchValue + "'i]"
+      );
+    }
+    $("#filter").click();
+  });
 
   function toggleEditingGhUsername() {
     ghUsername.toggle();
