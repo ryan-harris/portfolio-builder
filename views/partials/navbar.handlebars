@@ -16,6 +16,9 @@
         <ul class="uk-nav uk-dropdown-nav">
           <li><a href="{{this.username}}" target="_BLANK">View Portfolio</a></li>
           <li><a href="/api/logout">Logout</a></li>
+          {{#ifEq this.role "admin"}} 
+            <li><a href="/dashboard/admin">Admin</a></li>
+          {{/ifEq}}
         </ul>
       </div>
     </div>

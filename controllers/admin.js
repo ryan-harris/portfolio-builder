@@ -60,13 +60,12 @@ function getAllUsers() {
         totalRepos: user.Repos.length,
         username: user.dataValues.username,
         signedUp: moment(user.dataValues.createdAt).format("MMM Do YYYY"),
-        ghUsername: user.dataValues.ghUsername
+        ghUsername: user.dataValues.ghUsername,
+        role: user.dataValues.role
       };
     });
   });
 }
-
-getAllUsers();
 
 module.exports = {
   removeUser,
