@@ -66,8 +66,6 @@ function getAllUsers() {
   });
 }
 
-getAllUsers();
-
 module.exports = {
   removeUser,
   getDatabaseStats
