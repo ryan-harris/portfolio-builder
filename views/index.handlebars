@@ -77,7 +77,11 @@
         <a href="/signup" class="primary-button uk-button uk-button-primary">Get Started</a>
       </div>
       <div>
+        {{#if this.user}}
+        <a class="login-button uk-button uk-button-primary" href="/login">Dashboard</a>
+        {{else}}
         <a class="login-button uk-button uk-button-primary" href="/login">Login</a>
+        {{/if}}
       </div>
       <h2 class="logo">GhPort</h2>
     </div>
