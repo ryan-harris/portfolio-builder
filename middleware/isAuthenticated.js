@@ -2,7 +2,7 @@
 module.exports = function(req, res, next) {
   // MOCK OUT LOGGED IN USER
   // req.user = {
-  //   username: "test",
+  //   username: "admin",
   //   password: "test"
   // };
 
