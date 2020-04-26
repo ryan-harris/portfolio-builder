@@ -147,13 +147,22 @@
               {{!-- LAYOUT CHOOSER --}}
               <h3>Layout</h3>
               <form>
-                <div class="uk-flex">
-                  <input class="layout-radio uk-radio" type="radio" name="radio2" 
-                    data-layout="layout1" {{#ifEq userlayout "layout1"}}checked{{/ifEq}}/>
-                  <div class="uk-card uk-card-body"><p>Layout 1 Image</p></div>
-                  <input class="layout-radio uk-radio" type="radio" name="radio2" 
-                    data-layout="layout2" {{#ifEq userlayout "layout2"}}checked{{/ifEq}}/>
-                  <div class="uk-card uk-card-body"><p>Layout 2 Image</p></div>
+                <div class="uk-child-width-1-2" uk-grid>
+                  <div>
+                    <input class="layout-radio uk-radio" type="radio" name="radio2" 
+                      data-layout="layout1" {{#ifEq userlayout "layout1"}}checked{{/ifEq}}/>
+                      <div class="uk-card uk-card-body">
+                        <img src="/images/layout1.png" />
+                      </div>      
+                  </div>
+                  
+                  <div>
+                    <input class="layout-radio uk-radio" type="radio" name="radio2" 
+                      data-layout="layout2" {{#ifEq userlayout "layout2"}}checked{{/ifEq}}/>
+                    <div class="uk-card uk-card-body">
+                        <img src="/images/layout2.png"/>
+                    </div>
+                  </div>
                 </div>
               </form>
             </div>
