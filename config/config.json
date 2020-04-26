@@ -10,7 +10,6 @@
   "production": {
     "use_env_variable": "JAWSDB_URL",
     "dialect": "mysql",
-    "logging": false,
-    "database": "xv0sl5v6qxg4wa96"
+    "logging": false
   }
 }
