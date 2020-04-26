@@ -18,30 +18,6 @@ $(() => {
 
   editUserNameButton.on("click", toggleEditingGhUsername);
 
-  // Input for filtering repos listener
-  // $("#searchForm").on("submit", event => {
-  //   event.preventDefault();
-
-  //   const regex = new RegExp(`${$("#filterInput").val()}`, "gi");
-  //   if (
-  //     $("#filterInput")
-  //       .val()
-  //       .trim()
-  //   ) {
-  //     $(".repoCard").css("display", "none");
-
-  //     $(".repoCard")
-  //       .filter((i, obj) => {
-  //         return regex.test($(obj).data("name"));
-  //       })
-  //       .show();
-  //   } else {
-  //     $(".repoCard").show();
-  //   }
-  //   $(".repoCard").
-  //   $(".repoCard").addClass("uk-height-1-1");
-  // });
-
   filterInput.on("keyup", event => {
     const searchValue = event.target.value.split(" ").join("");
     if (searchValue === "") {
