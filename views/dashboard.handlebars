@@ -172,7 +172,7 @@
 
 <div class="uk-container">
   <div class="uk-card uk-card-default uk-card-body uk-width-1-1 uk-background-muted">
-    <ul id="repoAccord" uk-accordion>
+    <ul uk-accordion>
       <li class="uk-open">
         <a class="uk-accordion-title" href="#">
           <span class="uk-margin-small-right" uk-icon="icon: settings">
@@ -188,7 +188,7 @@
               </div>
             {{/unless}}
 
-            <div id="searchCont" uk-filter="target: .js-filter">
+            <div uk-filter="target: .js-filter">
               <div class="uk-flex uk-flex-between uk-flex-top">
                 <ul id="searchFilters" class="uk-subnav uk-subnav-pill">
                   <li uk-filter-control=".repoCard"><a href="#">All</a></li>
@@ -197,7 +197,7 @@
                   <li uk-filter-control="" id="filter" hidden><a  href="#">Search</a></li> 
                 </ul>
 
-                <form id="searchForm"> 
+                <form> 
                   <div class="uk-inline">
                     <span class="uk-form-icon" uk-icon="icon: search"></span>
                       <input id="filterInput" class="uk-input uk-form-small" type="text" placeholder="Search..." style="border-radius: 34px">
