@@ -1,21 +1,37 @@
+<style>
+    .img{
+      height: 250px;
+      width: 250px;
+      
+    }
+    .section {
+      float: right;
+      min-width: 70%;
+      padding-bottom: 1em;
+      padding-top: 1em;
+    }
+      @media only screen and (max-width: 959px) {
+        .img{
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+</style>
 
-    <div
-      class="uk-child-width-expand uk-container"
-      data-uk-grid-margin
-    >
-    <br>
+{{!-- uk-child-width-expand --}}
+    <div class="uk-child-width-1-1 uk-container" style="padding-top: 2em;">
       <img
-        class="uk-align-center uk-thumbnail uk-border-rounded uk-width-1-4"
+        class="uk-align-center uk-align-left@m uk-border-rounded uk-child-width-1-2@m img"
         data-src="{{profileImg}}"
         width="250"
         height="250"
         alt="profileImg"
         uk-img
       />
-      <div class="uk-section uk-section-muted uk-width-3">
-        <div class="uk-container" style="padding-left: 1em;">
+      <div class="uk-section uk-section-muted uk-width-1-2@m section">
+        <div style="padding-left: 1em;">
           <h1>Hi! I'm {{displayName}}</h1>
-          <br>
           <h2>About Me</h2>
           <p>
             {{#if aboutMe}}

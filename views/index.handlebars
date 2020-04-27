@@ -1,6 +1,10 @@
     
 
     <style>
+      body {
+        background-color: snow;
+      }
+
       .jumbotron {
         height: 80vh;
         display: flex;
@@ -10,14 +14,18 @@
         background: url("https://images.unsplash.com/photo-1555099962-4199c345e5dd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80");
         background-size: cover;
         background-position: right;
-        
+      }
+
+      .jumbotron .primary-button {
+        background: #1e87f0;
+        color: #fff;
       }
 
       .jumbotron h1 {
         font-size: 64px;
       }
 
-      .jumbotron-content h1{
+      .jumbotron-content h1 {
         color: white;
         text-shadow: 2px 2px 5px rgba(0,0,0, .5);
       }
@@ -70,10 +78,14 @@
       <div class="jumbotron-content uk-overlay-primary uk-padding">
         <h1>GitHub Portfolio Builder</h1>
         <p>An app built for developers, easily share your work from github with <br> out dealing with the headache of web development.</p>
-        <a href="/signup" class="uk-button uk-button-primary">Get Started</a>
+        <a href="/signup" class="primary-button uk-button uk-button-primary">Get Started</a>
       </div>
       <div>
+        {{#if this.user}}
+        <a class="login-button uk-button uk-button-primary" href="/login">Dashboard</a>
+        {{else}}
         <a class="login-button uk-button uk-button-primary" href="/login">Login</a>
+        {{/if}}
       </div>
       <h2 class="logo">GhPort</h2>
     </div>
@@ -86,11 +98,25 @@
             <hr class="hr-partial">
             <p>Enter your github username so that the portfolio builder knows which github account to grab repos from.</p>  
           </div>
-          <div class="card-image"></div>
+          <div class="card-image">
+            <img
+              class="uk-border-rounded"
+              width="600" 
+              height="150" 
+              src="https://images.unsplash.com/photo-1477949331575-2763034b5fb5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" 
+              alt="githubImg">
+          </div>
         </div>
-
+        <hr style="margin-top: 0;">
         <div class="uk-child-width-1-2@m uk-margin-large-bottom step" uk-grid>
-          <div class="card-image"></div>
+          <div class="card-image">
+            <img
+              class="uk-border-rounded"
+              width="600" 
+              height="150" 
+              src="https://images.unsplash.com/photo-1516031190212-da133013de50?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" 
+              alt="deposImg">
+          </div>
           <div>
             <h1>Choose The Repos To Include</h1>
             <hr class="hr-partial">
@@ -98,17 +124,35 @@
           </div>
         </div>
 
+        <hr style="margin-top: 0;">
+
         <div class="uk-child-width-1-2@m uk-margin-large-bottom step" uk-grid>
           <div>
             <h1>Choose Theme And Layout</h1>
             <hr class="hr-partial">
             <p>Choose the theme and layout that you want to use for your portfolio page.</p>  
           </div>
-          <div class="card-image"></div>
+          <div class="card-image">
+            <img 
+              class="uk-border-rounded"
+              width="600" 
+              height="150" 
+              src="https://images.unsplash.com/photo-1573867639040-6dd25fa5f597?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" 
+              alt="layoutImg">
+          </div>
         </div>
 
+        <hr style="margin-top: 0;">
+
         <div class="uk-child-width-1-2@m uk-margin-large-bottom step" uk-grid>
-          <div class="card-image"></div>
+          <div class="card-image">
+            <img 
+              class="uk-border-rounded"
+              width="600" 
+              height="150" 
+              src="https://images.unsplash.com/photo-1532653495815-10005f43eee9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" 
+              alt="profileImg">
+          </div>
           <div>
             <h1>Update About Me And Profile Image</h1>
             <hr class="hr-partial">
@@ -116,13 +160,22 @@
           </div>
         </div>
 
+        <hr style="margin-top: 0;">
+
         <div class="uk-child-width-1-2@m uk-margin-large-bottom step" uk-grid>
           <div>
             <h1>Share Your Portfolio With The World</h1>
             <hr class="hr-partial">
             <p>Share the link to your new github portfolio page with the world!</p>  
           </div>
-          <div class="card-image"></div>
+          <div class="card-image">
+            <img 
+              class="uk-border-rounded"
+              width="600" 
+              height="150" 
+              src="https://images.unsplash.com/photo-1526948531399-320e7e40f0ca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" 
+              alt="shareImg">
+          </div>
         </div>
       </div>
     </main>

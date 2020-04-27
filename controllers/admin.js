@@ -38,12 +38,13 @@ function getNumberOfRepos() {
 }
 
 function getStorageUsage() {
+  const dbName = db.sequelize.getDatabaseName();
   return db.sequelize.query(
     `
     SELECT table_schema "Database",
     ROUND(SUM(data_length + index_length) / 1024 / 1024, 1) "MB" 
     FROM information_schema.tables 
-    WHERE table_schema = "portfolioBuilderDB"
+    WHERE table_schema = "${dbName}"
     `,
     { type: db.sequelize.QueryTypes.SELECT }
   );
@@ -60,13 +61,12 @@ function getAllUsers() {
         totalRepos: user.Repos.length,
         username: user.dataValues.username,
         signedUp: moment(user.dataValues.createdAt).format("MMM Do YYYY"),
-        ghUsername: user.dataValues.ghUsername
+        ghUsername: user.dataValues.ghUsername,
+        role: user.dataValues.role
       };
     });
   });
 }
-
-getAllUsers();
 
 module.exports = {
   removeUser,

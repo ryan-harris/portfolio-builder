@@ -110,7 +110,8 @@ async function constructData(username) {
     theme: userData.theme,
     userlayout: userData.layout,
     ghUsername: userData.ghUsername,
-    username: userData.username
+    username: userData.username,
+    role: userData.role
   };
   return returnData;
 }

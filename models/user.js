@@ -16,6 +16,11 @@ module.exports = function(sequelize, DataTypes) {
         return;
       }
     },
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "user"
+    },
     theme: {
       type: DataTypes.STRING,
       allowNull: false,

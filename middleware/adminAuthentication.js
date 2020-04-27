@@ -8,8 +8,13 @@ module.exports = function(req, res, next) {
     res.redirect("/");
   }
   if (req.user) {
-    if (req.user.username.toLowerCase() === "admin") {
+    if (
+      req.user.username.toLowerCase() === "admin" ||
+      req.user.role.toLowerCase() === "admin"
+    ) {
       return next();
+    } else {
+      res.redirect("/dashboard");
     }
   }
 };

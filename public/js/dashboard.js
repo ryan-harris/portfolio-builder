@@ -14,8 +14,22 @@ $(() => {
   const saveUsername = $("#saveUsername");
   const layoutRadio = $(".layout-radio");
   const themePicker = $("#themePicker");
+  const filterInput = $("#filterInput");
 
   editUserNameButton.on("click", toggleEditingGhUsername);
+
+  filterInput.on("keyup", event => {
+    const searchValue = event.target.value.split(" ").join("");
+    if (searchValue === "") {
+      $("#filter").attr("uk-filter-control", "");
+    } else {
+      $("#filter").attr(
+        "uk-filter-control",
+        "filter:[data-name*='" + searchValue + "'i]"
+      );
+    }
+    $("#filter").click();
+  });
 
   function toggleEditingGhUsername() {
     ghUsername.toggle();
