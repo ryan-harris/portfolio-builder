@@ -12,6 +12,7 @@ $(() => {
 
   signUpForm.on("submit", function(event) {
     event.preventDefault();
+    toggleSpinnerAndForm();
 
     const userData = {
       username: usernameInput.val().trim(),
@@ -20,6 +21,7 @@ $(() => {
     };
 
     if (!userData.username || !userData.password || !userData.github) {
+      handleLoginErr("Fields cannot be empty.");
       return;
     }
 
@@ -27,8 +29,6 @@ $(() => {
       handleLoginErr("Passwords must match");
       return;
     }
-
-    addSpinner();
 
     signUpUser(userData.username, userData.password, userData.github);
     usernameInput.val("");
@@ -49,7 +49,6 @@ $(() => {
         window.location.replace("/dashboard");
       })
       .catch(err => {
-        removeSpinner();
         if (err.status === 401) {
           handleLoginErr("That username already exists");
         } else {
@@ -59,19 +58,25 @@ $(() => {
   }
 
   function handleLoginErr(message) {
+    toggleSpinnerAndForm();
     $("#alert .msg").text(message);
     $("#alert").fadeIn(500);
   }
 
-  function addSpinner() {
-    $(".uk-container").append(
-      "<div id ='spinner'><span class = 'uk-position-center' uk-spinner='ratio: 4.5'></span></div>"
-    );
-    signUpForm.css("opacity", "0");
+  function toggleSpinnerAndForm() {
+    $("#loginForm").toggle();
+    $("#spinner").toggle();
   }
 
-  function removeSpinner() {
-    $("#spinner").remove();
-    signUpForm.css("opacity", "100");
-  }
+  // function addSpinner() {
+  //   $(".uk-container").append(
+  //     "<div id ='spinner'><span class = 'uk-position-center' uk-spinner='ratio: 4.5'></span></div>"
+  //   );
+  //   signUpForm.css("opacity", "0");
+  // }
+
+  // function removeSpinner() {
+  //   $("#spinner").remove();
+  //   signUpForm.css("opacity", "100");
+  // }
 });

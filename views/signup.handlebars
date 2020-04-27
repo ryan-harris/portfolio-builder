@@ -1,6 +1,14 @@
 
 {{> navbar}}
 
+<style>
+  #spinner {
+    display: none;
+    text-align: center;
+    margin: 0 auto;
+  }
+</style>
+
 <div class="uk-container uk-padding-large uk-width-large">
   <div>
     <h2>Sign Up</h2>
@@ -10,48 +18,45 @@
       </div>
     </label>
 
-    <form class="signup uk-form-stacked">
+    <div id='spinner'><span uk-spinner='ratio: 4.5'></span></div>
+
+    <form id="loginForm" class="signup uk-form-stacked">
+
       <div class="uk-margin-small">
-        <label class="uk-form-label">Username</label>
-        <div class="">
-          <!-- <span class="uk-form-icon" uk-icon="icon: user"></span> -->
+        <label class="uk-form-label">Username
           <input id="username-input" class="uk-input" type="text" />
-        </div>
+        </label>
       </div>
+
       <div class="uk-margin-small">
-        <label class="uk-form-label">Password</label>
-        <div class="">
-          <!-- <span class="uk-form-icon" uk-icon="icon: lock"></span> -->
+        <label class="uk-form-label">Password
           <input id="password-input" class="uk-input" type="password" />
-        </div>
+        </label>
       </div>
+
       <div class="uk-margin-small">
-        <label class="uk-form-label">Confirm Password</label>
-        <div class="">
-          <!-- <span class="uk-form-icon" uk-icon="icon: lock"></span> -->
+        <label class="uk-form-label">Confirm Password
           <input id="confirm-input" class="uk-input" type="password" />
-        </div>
+        </label>
       </div>
+
       <div class="uk-margin-small">
-        <label class="uk-form-label">GitHub Username</label>
-        <div class="">
-          <!-- <span class="uk-form-icon" uk-icon="icon: github"></span> -->
+        <label class="uk-form-label">GitHub Username
           <input id="github-input" class="uk-input" type="text" />
-        </div>
+        </label>
       </div>
+
       <div
         style="display: none;"
         id="alert"
         class="uk-alert uk-alert-danger u-margin-small"
-        role="alert"
-      >
+        role="alert">
         <span uk-icon="icon: warning"></span>
         <span class="sr-only">Error:</span> <span class="msg"></span>
       </div>
       <button class="uk-button uk-button-primary">Submit</button>
     </form>
 
-    <br />
     <p>Already have an account? Login <a href="/login">here</a></p>
   </div>
 </div>
