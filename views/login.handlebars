@@ -1,39 +1,43 @@
 {{> navbar}}
 
-<div class="uk-container uk-padding-large uk-position-center uk-width-large">
-  <div>
+<style>
+  #spinner {
+    display: none;
+    text-align: center;
+    margin: 0 auto;
+  }
+</style>
+
+<div class="uk-container uk-padding-large uk-width-large">
     <h2>Login</h2>
 
     <form class="login uk-form-stacked">
-      <div class="uk-margin-small">
-        <label class="uk-form-label">Username</label>
-        <div class="">
-          <!-- <span class="uk-form-icon" uk-icon="icon: user"></span> -->
-          <input id="username-input" class="uk-input" type="text" />
-        </div>
-      </div>
-      <div class="uk-margin-small">
-        <label class="uk-form-label">Password</label>
-        <div class="">
-          <!-- <span class="uk-form-icon" uk-icon="icon: lock"></span> -->
-          <input id="password-input" class="uk-input" type="password" />
-        </div>
-      </div>
-      <div
-        style="display: none;"
-        id="alert"
-        class="uk-alert uk-alert-danger u-margin-small"
-        role="alert"
-      >
-        <span uk-icon="icon: warning"></span>
-        <span class="sr-only">Error:</span> <span class="msg"></span>
-      </div>
-      <button class="uk-button uk-button-primary">Submit</button>
-    </form>
+      <div id='spinner'><span uk-spinner='ratio: 4.5'></span></div>
 
-    <br />
+      <div id="loginForm" class="uk-margin-small">
+        <label class="uk-form-label">Username
+          <input id="username-input" class="uk-input" type="text" />
+        </label>
+
+        <div class="uk-margin-small">
+          <label class="uk-form-label">Password
+            <input id="password-input" class="uk-input" type="password" /> 
+          </label>
+        </div>
+
+        <div
+          style="display: none"
+          id="alert"
+          class="uk-alert uk-alert-danger u-margin-small"
+          role="alert">
+          <span uk-icon="icon: warning"></span>
+          <span class="sr-only">Error:</span> <span class="msg"></span>
+        </div>
+
+        <button class="uk-button uk-button-primary">Submit</button>
+      </div>
+    </form>
     <p>Don't have an account? Sign up <a href="/signup">here</a></p>
-  </div>
 </div>
 
 <script type="text/javascript" src="/js/login.js"></script>

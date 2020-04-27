@@ -30,7 +30,13 @@ async function getDatabaseStats() {
 }
 
 function getNumberOfUsers() {
-  return db.User.findAndCountAll();
+  return db.User.findAndCountAll({
+    where: {
+      username: {
+        [db.Sequelize.Op.ne]: "admin"
+      }
+    }
+  });
 }
 
 function getNumberOfRepos() {
@@ -54,6 +60,11 @@ function getAllUsers() {
   return db.User.findAll({
     include: {
       model: db.Repo
+    },
+    where: {
+      username: {
+        [db.Sequelize.Op.ne]: "admin"
+      }
     }
   }).then(users => {
     return users.map(user => {
