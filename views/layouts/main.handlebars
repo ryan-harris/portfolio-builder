@@ -10,16 +10,8 @@
   {{!-- Custom CSS --}}
   <link rel="stylesheet" href="/css/main.css">
   {{!-- GOOGLE FONT --}}
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2&display=swap" rel="stylesheet">
 
-  {{!-- UI Kit JS --}}
-  <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit-icons.min.js"></script>
-
-  {{!-- Jquery JS --}}
-  <script src="https://code.jquery.com/jquery-3.5.0.min.js"
-   integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
   <style>
     .profile-image {
       background: dodgerblue {{#if profileImage}}url({{profileImage}}){{/if}};
@@ -29,13 +21,24 @@
       width: 50px;
     }
   </style>
-  <title>GHPort</title>
+  <title>GhPort</title>
 </head>
 
 <body>
   
   {{{ body }}}
 
+  {{#if script}}
+    {{!-- UI Kit JS --}}
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.4.2/dist/js/uikit-icons.min.js"></script>
+
+    {{!-- Jquery JS --}}
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"
+    integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+
+    <script src="{{script}}"></script>
+  {{/if}}
 </body>
 
 </html>

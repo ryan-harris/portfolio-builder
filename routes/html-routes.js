@@ -19,19 +19,23 @@ router.get("/login", function(req, res) {
   if (req.user) {
     return res.redirect("/dashboard");
   }
-  res.render("login");
+  res.render("login", { script: "/js/login.js" });
 });
 
 router.get("/signup", function(req, res) {
   if (req.user) {
     return res.redirect("/dashboard");
   }
-  res.render("signup");
+  res.render("signup", { script: "/js/signup.js" });
 });
 
 router.get("/dashboard", isAuthenticated, buildUserInfo, function(req, res) {
   req.userData.repos = formatRepoNames(req.userData.repos);
-  return res.render("dashboard", { ...req.userData, layout: "main" });
+  return res.render("dashboard", {
+    ...req.userData,
+    layout: "main",
+    script: "/js/dashboard.js"
+  });
 });
 
 router.get("/:username", function(req, res) {
@@ -58,7 +62,8 @@ router.get("/dashboard/admin", adminAuthentication, function(req, res) {
         users: data.users,
         repos: data.repos,
         userData: data.userData
-      }
+      },
+      script: "/js/admin.js"
     });
   });
 });
